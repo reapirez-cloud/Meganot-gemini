@@ -1,17 +1,13 @@
 import type { RuleTemplate, RuleTemplateLevel } from "./types.ts"
 import { WIZARD_SUBCLASS_PARENT_CATALOG_KEY, WIZARD_SUBCLASS_UNLOCK_LEVEL, type WizardSubclassPackageValidation } from "./wizardSubclasses.ts"
 
-// ==========================================
-// CONJURATION (Legacy / 2014)
-// ==========================================
-
 export const conjurationTemplate: RuleTemplate = {
   id: "template:subclass:wizard-conjuration",
   campaign_id: "",
   kind: "subclass",
   slug: "wizard-conjuration",
-  name: "Школа воплощения", // Note: the system translation used "Школа воплощения" for conjuration in legacy array, but we are using our translated narrative.
-  description: "Волшебники школы Призыва специализируются на заклинаниях, которые создают объекты и существ из ничего или переносят их из других мест.",
+  name: "Школа Вызова",
+  description: "Призыватели специализируются на заклинаниях, которые создают предметы и существ из ничего или перемещают их в пространстве.",
   version: 1,
   catalog_key: "subclass:wizard:conjuration",
   parent_template_id: "template:class:wizard",
@@ -30,7 +26,16 @@ export const conjurationLevels: RuleTemplateLevel[] = [
     id: "level:3:wizard-conjuration",
     template_id: conjurationTemplate.id,
     level: 3,
-    choices: [],
+    choices: [
+      {
+        key: "conjuration-savant-spells",
+        label: "Заклинания Вызова",
+        target: "trait",
+        options: [],
+        options_query: "spell:school=conjuration",
+        count: 2
+      }
+    ],
     mechanics: [
       {
         id: "conjuration-savant-l3",
@@ -39,17 +44,18 @@ export const conjurationLevels: RuleTemplateLevel[] = [
         key: "conjuration-savant",
         sourceKey: "conjuration-savant-l3-1",
         presentation: {
-          authorExplanation: "Время и стоимость копирования заклинаний Вызова в вашу книгу уменьшены вдвое.",
+          authorExplanation: "[PHB 2014] Золото и время, которые вы тратите на копирование заклинания Вызова в свою книгу заклинаний, уменьшаются вдвое.",
         }
       },
       {
         id: "minor-conjuration-l3",
-        type: "grant",
-        target: "trait",
-        key: "minor-conjuration",
+        type: "action",
+        key: "action:minor-conjuration",
+        label: "Малый вызов",
+        economy: "action",
         sourceKey: "minor-conjuration-l3-1",
         presentation: {
-          authorExplanation: "Действием вы можете создать неволшебный предмет в своей руке (или на земле в 10 футах). Он светится тусклым светом и исчезает через 1 час, если получит урон, или если вы используете умение снова.",
+          authorExplanation: "Действием вы можете призвать неодушевленный предмет не больше 3 футов и не тяжелее 10 фунтов в вашей руке или на земле. Объект излучает тусклый свет (5 футов) и исчезает через 1 час, при получении урона или если вы используете это умение снова.",
         }
       }
     ]
@@ -62,13 +68,24 @@ export const conjurationLevels: RuleTemplateLevel[] = [
     mechanics: [
       {
         id: "benign-transposition-l6",
-        type: "grant",
-        target: "trait",
-        key: "benign-transposition",
+        type: "action",
+        key: "action:benign-transposition",
+        label: "Безвредное перемещение",
+        economy: "bonus_action",
+        range: { kind: "ranged", normal: 30, unit: "ft" },
+        resourceCosts: [{ key: "resource:benign-transposition", amount: 1 }],
         sourceKey: "benign-transposition-l6-1",
         presentation: {
-          authorExplanation: "Действием вы можете телепортироваться на 30 футов. Вы можете поменяться местами с согласным существом. Восстанавливается после долгого отдыха или накладывания заклинания Вызова 1+ уровня.",
+          authorExplanation: "Действием вы можете телепортироваться на 30 футов в свободное видимое пространство. Альтернативно, вы можете поменяться местами с согласным существом Малого или Среднего размера. Это умение восстанавливается после долгого отдыха или после наложения заклинания Вызова 1-го уровня и выше.",
         }
+      },
+      {
+        id: "benign-transposition-resource-l6",
+        type: "resource",
+        key: "resource:benign-transposition",
+        label: "Безвредное перемещение (использование)",
+        max: 1,
+        recharge: ["long_rest"]
       }
     ]
   },
@@ -85,7 +102,7 @@ export const conjurationLevels: RuleTemplateLevel[] = [
         key: "focused-conjuration",
         sourceKey: "focused-conjuration-l10-1",
         presentation: {
-          authorExplanation: "Получение урона не может нарушить вашу концентрацию на заклинаниях Вызова.",
+          authorExplanation: "Пока вы концентрируетесь на заклинании Вызова, получение урона не может нарушить вашу концентрацию на этом заклинании.",
         }
       }
     ]
@@ -103,7 +120,7 @@ export const conjurationLevels: RuleTemplateLevel[] = [
         key: "durable-summons",
         sourceKey: "durable-summons-l14-1",
         presentation: {
-          authorExplanation: "Любое существо, которое вы вызываете или создаёте заклинанием Вызова, получает 30 временных хитов.",
+          authorExplanation: "Любое существо, которое вы призываете или создаете с помощью заклинания Вызова, получает 30 временных хитов.",
         }
       }
     ]

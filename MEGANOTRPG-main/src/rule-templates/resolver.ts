@@ -161,7 +161,7 @@ function choiceContributions(
   if (!choiceDefinitionAvailable(definition, bundle.assignment.selected_choices)) return []
 
   const selected = normalizeSelected(bundle.assignment.selected_choices?.[definition.key])
-    .filter((key) => definition.options.includes(key) && choiceOptionAvailableAtLevel(definition, key, sourceLevel))
+    .filter((key) => (definition.options.includes(key) || definition.options_query) && choiceOptionAvailableAtLevel(definition, key, sourceLevel))
     .slice(0, choiceCountAtLevel(definition, sourceLevel))
   const root = templateRootSource(bundle)
 

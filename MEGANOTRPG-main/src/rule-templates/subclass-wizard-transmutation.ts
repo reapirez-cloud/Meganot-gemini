@@ -1,17 +1,13 @@
 import type { RuleTemplate, RuleTemplateLevel } from "./types.ts"
 import { WIZARD_SUBCLASS_PARENT_CATALOG_KEY, WIZARD_SUBCLASS_UNLOCK_LEVEL, type WizardSubclassPackageValidation } from "./wizardSubclasses.ts"
 
-// ==========================================
-// TRANSMUTATION (Legacy / 2014)
-// ==========================================
-
 export const transmutationTemplate: RuleTemplate = {
   id: "template:subclass:wizard-transmutation",
   campaign_id: "",
   kind: "subclass",
   slug: "wizard-transmutation",
-  name: "Школа преобразования",
-  description: "Волшебники школы Преобразования изменяют энергию и материю, манипулируя фундаментальными законами природы.",
+  name: "Школа Преобразования",
+  description: "Трансмутаторы — это исследователи, стремящиеся изменять структуру материи, превращая одно в другое, изменяя законы физики.",
   version: 1,
   catalog_key: "subclass:wizard:transmutation",
   parent_template_id: "template:class:wizard",
@@ -30,7 +26,16 @@ export const transmutationLevels: RuleTemplateLevel[] = [
     id: "level:3:wizard-transmutation",
     template_id: transmutationTemplate.id,
     level: 3,
-    choices: [],
+    choices: [
+      {
+        key: "transmutation-savant-spells",
+        label: "Заклинания Преобразования",
+        target: "trait",
+        options: [],
+        options_query: "spell:school=transmutation",
+        count: 2
+      }
+    ],
     mechanics: [
       {
         id: "transmutation-savant-l3",
@@ -39,7 +44,7 @@ export const transmutationLevels: RuleTemplateLevel[] = [
         key: "transmutation-savant",
         sourceKey: "transmutation-savant-l3-1",
         presentation: {
-          authorExplanation: "Время и стоимость копирования заклинаний Преобразования в вашу книгу уменьшены вдвое.",
+          authorExplanation: "[PHB 2014] Золото и время, которые вы тратите на копирование заклинания Преобразования в свою книгу заклинаний, уменьшаются вдвое.",
         }
       },
       {
@@ -49,7 +54,7 @@ export const transmutationLevels: RuleTemplateLevel[] = [
         key: "minor-alchemy",
         sourceKey: "minor-alchemy-l3-1",
         presentation: {
-          authorExplanation: "Вы можете потратить 10 минут, чтобы изменить физические свойства одного неволшебного предмета (дерево, камень, железо, медь или серебро) на 1 час.",
+          authorExplanation: "Вы можете временно изменять физические свойства немагического объекта (дерево, камень, железо, медь или серебро), тратя по 10 минут за каждый кубический фут материала. Эффект длится 1 час или пока вы не отмените его (не требует действия).",
         }
       }
     ]
@@ -62,12 +67,13 @@ export const transmutationLevels: RuleTemplateLevel[] = [
     mechanics: [
       {
         id: "transmuters-stone-l6",
-        type: "grant",
-        target: "trait",
-        key: "transmuters-stone",
+        type: "action",
+        key: "action:transmuters-stone",
+        label: "Создать камень преобразователя",
+        economy: "action",
         sourceKey: "transmuters-stone-l6-1",
         presentation: {
-          authorExplanation: "Вы можете создать камень трансмутатора, дающий носителю один эффект на выбор (тёмное зрение, скорость, владение спасброском Телосложения или сопротивление урону).",
+          authorExplanation: "Вы можете потратить 8 часов, чтобы создать Камень преобразователя, дающий носителю один бафф на выбор: Темное зрение (60 фт.), Скорость +10 фт., Владение спасбросками Телосложения, или сопротивление урону (кислота, холод, огонь, молния или звук). Вы можете менять эффект при касте заклинаний Преобразования.",
         }
       }
     ]
@@ -80,13 +86,25 @@ export const transmutationLevels: RuleTemplateLevel[] = [
     mechanics: [
       {
         id: "shapechanger-l10",
-        type: "grant",
-        target: "trait",
-        key: "shapechanger",
+        type: "spell",
+        key: "spell:polymorph",
+        payload: {
+          spell: { name: "Превращение (Зверь 1 ОП)", level: 4, school: "transmutation" },
+          preparation: { mode: "always_prepared" },
+          methods: [{ key: "shapechanger-cast", kind: "class_feature", resourceOptions: [{ key: "shapechanger-charge", costs: [{key: "resource:shapechanger", amount: 1}] }] }]
+        },
         sourceKey: "shapechanger-l10-1",
         presentation: {
-          authorExplanation: "Вы добавляете заклинание Превращение (Polymorph) в свою книгу. Вы можете наложить его на себя без траты ячейки, превратившись в зверя с показателем опасности 1 или ниже.",
+          authorExplanation: "Вы получаете заклинание Превращение (Polymorph). Вы можете накладывать его на себя один раз без ячейки до короткого или долгого отдыха (только в зверя опасности 1 или ниже).",
         }
+      },
+      {
+        id: "shapechanger-resource-l10",
+        type: "resource",
+        key: "resource:shapechanger",
+        label: "Перевертыш (использование)",
+        max: 1,
+        recharge: ["short_rest", "long_rest"]
       }
     ]
   },
@@ -103,7 +121,7 @@ export const transmutationLevels: RuleTemplateLevel[] = [
         key: "master-transmuter",
         sourceKey: "master-transmuter-l14-1",
         presentation: {
-          authorExplanation: "Вы можете разрушить свой камень трансмутатора, чтобы произвести мощный эффект (Полное исцеление, Возвращение к жизни, омоложение или превращение объекта).",
+          authorExplanation: "Вы можете разрушить свой Камень преобразователя действием для мощного эффекта: Полное преобразование (предмет 5x5x5 в другой), Панацея (снять все недуги и восстановить хиты), Восстановление жизни (каст Raise Dead без компонентов) или Омоложение (омолодить цель на 3d10 лет).",
         }
       }
     ]

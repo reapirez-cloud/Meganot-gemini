@@ -196,11 +196,7 @@ test("real React lifecycle: registry invalidation rerenders Frame without remoun
 
   try {
     await act(async () => {
-      root.render(React.createElement(
-        FrameLifecycleHarness,
-        { characterId },
-        React.createElement(ProfileProbe),
-      ))
+      root.render(React.createElement(FrameLifecycleHarness, { characterId, children: React.createElement(ProfileProbe) }))
     })
     assert.equal(mounts, 1)
     assert.equal(unmounts, 0)

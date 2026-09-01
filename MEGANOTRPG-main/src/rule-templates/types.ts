@@ -3,7 +3,7 @@
 import type { StoredMechanics } from "../types/characterMechanics.ts"
 
 export type RuleTemplateKind = "race" | "subrace" | "class" | "subclass"
-export type RuleChoiceTarget = "language" | "proficiency" | "sense" | "trait"
+export type RuleChoiceTarget = "language" | "proficiency" | "sense" | "trait" | "spell"
 export type RuleTemplateSourceKind = "official" | "third_party" | "custom"
 export type RuleChoiceSelectionMode = "manager" | "player_once"
 export type RuleChoiceRefreshPolicy = "long_rest"
@@ -20,6 +20,7 @@ export type RuleChoiceDefinition = {
   label: string
   target: RuleChoiceTarget
   options: string[]
+  options_query?: string
   count?: number
   /** The number of persistent selections allowed once source.level reaches each threshold. */
   count_by_level?: Record<string, number>
