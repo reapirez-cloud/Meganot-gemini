@@ -1,0 +1,44 @@
+/*
+ * Text-RPG presentation layer.
+ * Legacy D&D-only values stay stored for backward compatibility, but are not
+ * shown in the current mobile/text-game sheet.
+ */
+
+.character-profile-screen .character-tab-section > .section-head:first-child:has(.section-actions) .item-meta {
+  font-size: 0;
+}
+
+.character-profile-screen .character-tab-section > .section-head:first-child:has(.section-actions) .item-meta::after {
+  content: "Компактный лист для текстовой игры";
+  font-size: 12px;
+}
+
+/* Keep only race/species in the identity strip. D&D background, alignment and XP are legacy. */
+.character-profile-screen .sheet-identity > div:nth-child(n + 2) {
+  display: none;
+}
+
+.character-profile-screen .sheet-identity {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+/* Speed in feet is not used by the text-game flow. */
+.character-profile-screen .combat-stat-grid > .combat-stat:nth-child(3) {
+  display: none;
+}
+
+/* In the quick panel keep initiative and passive perception only. */
+.character-profile-screen .sheet-two-column > .sheet-panel:nth-child(2) .sheet-line:nth-of-type(3),
+.character-profile-screen .sheet-two-column > .sheet-panel:nth-child(2) .sheet-line:nth-of-type(4) {
+  display: none;
+}
+
+/* The long-form field is the actual character history, not the D&D Background field. */
+.character-profile-screen .sheet-text-grid > .sheet-text-panel:nth-child(8) h4 {
+  font-size: 0;
+}
+
+.character-profile-screen .sheet-text-grid > .sheet-text-panel:nth-child(8) h4::after {
+  content: "История персонажа";
+  font-size: 14px;
+}

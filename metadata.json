@@ -1,0 +1,6 @@
+{
+  "name": "MEGANOTRPG Engine Studio",
+  "description": "Интерактивная панель управления и игровая среда для движка MEGANOTRPG: Character Engine (CE), TOBIK Roll Engine, каталог заклинаний Chasovoy и база нарратива Рейнара Восса.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

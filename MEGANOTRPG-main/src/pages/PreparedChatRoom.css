@@ -1,0 +1,5 @@
+.prepared-chat-room { position: relative; min-height: 100%; height: 100%; }
+.prepared-chat-room__overlay { position: absolute; z-index: 35; left: 0; right: 0; bottom: 72px; max-height: min(56vh, 560px); overflow-y: auto; overscroll-behavior: contain; pointer-events: none; }
+.prepared-chat-room__overlay > * { pointer-events: auto; }
+.prepared-chat-room__error { width: min(680px, calc(100% - 28px)); margin: 0 auto 8px; padding: 9px 12px; border-radius: 12px; background: rgb(184 58 58 / 92%); color: white; font-size: 12px; }
+@media (min-width: 760px) { .prepared-chat-room__overlay { left: 50%; right: auto; width: min(720px, calc(100% - 32px)); transform: translateX(-50%); } }

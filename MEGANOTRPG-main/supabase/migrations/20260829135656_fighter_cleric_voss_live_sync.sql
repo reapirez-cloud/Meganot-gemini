@@ -1,0 +1,21 @@
+-- CLASS_INTEGRATION_STRICT: class:fighter
+-- CLASS_INTEGRATION_STRICT: class:cleric
+-- CLASS_PACKAGE_TEST: tests/vossReferenceContract.test.ts
+-- CLASS_WORK_STATUS: fighter:text=READY;mechanics=NOT_AUDITED; cleric:text=READY;mechanics=NOT_AUDITED
+-- CLASS_STATUS_LEDGER: src/rule-templates/CLASS_WORK_STATUS.md
+--
+-- Production migration-history marker.
+--
+-- On 2026-08-29 production received a scoped presentation-only delivery for
+-- class:fighter, subclass:fighter:*, class:cleric and subclass:cleric:* under
+-- this migration version. The live patch added the three reference layers
+-- authorExplanation -> exact existing rule -> authorComment and normalized the
+-- top-level Reynar Voss copy. It did not change exact rule descriptions,
+-- choices, resources, actions, costs, formulas, effects, spell access,
+-- availability or Character Engine behavior.
+--
+-- The canonical repository implementation and future-campaign contract lives in:
+--   20260829162500_voss_reference_voice_contract.sql
+--
+-- Keep this marker so local migration history matches the production version
+-- recorded by Supabase. No SQL is intentionally repeated here.

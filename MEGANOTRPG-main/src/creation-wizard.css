@@ -1,0 +1,44 @@
+.creation-wizard{max-height:min(94dvh,880px);overflow:hidden;display:flex;flex-direction:column}
+.creation-wizard__head{flex:0 0 auto}
+.creation-wizard__progress{flex:0 0 auto;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;padding:0 16px 12px}
+.creation-wizard__progress i{height:3px;border-radius:99px;background:#29262f;transition:background .18s ease,box-shadow .18s ease}
+.creation-wizard__progress i.is-active{background:#8f6ac1;box-shadow:0 0 10px rgba(143,106,193,.28)}
+.creation-wizard__step{min-height:0;overflow-y:auto;padding:4px 16px 14px;display:grid;gap:12px;scrollbar-width:none}
+.creation-wizard__step::-webkit-scrollbar{display:none}
+.creation-wizard__intro{display:grid;grid-template-columns:38px minmax(0,1fr);align-items:center;gap:10px;padding:4px 1px}
+.creation-wizard__intro>span{width:38px;height:38px;border:1px solid #393141;border-radius:12px;display:grid;place-items:center;background:#211b27;color:#c7afe7;font-size:10px;font-weight:800;letter-spacing:.07em}
+.creation-wizard__intro>div{min-width:0;display:grid;gap:2px}
+.creation-wizard__intro strong{font-size:15px;letter-spacing:-.015em}
+.creation-wizard__intro small{color:#8c8592;font-size:10px;line-height:1.4}
+.creation-preset-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.creation-preset-grid--compact{grid-template-columns:1fr}
+.creation-preset{min-width:0;min-height:92px;padding:11px;border:1px solid #302c35;border-radius:17px;display:grid;grid-template-columns:38px minmax(0,1fr) 20px;align-items:center;gap:9px;background:linear-gradient(145deg,#171519,#121214);color:inherit;text-align:left}
+.creation-preset>span{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:#211d27;color:#baa5da;font-size:17px}
+.creation-preset>div{min-width:0;display:grid;gap:3px}
+.creation-preset strong{font-size:12px;font-weight:680}
+.creation-preset small{color:#827c89;font-size:9px;line-height:1.35}
+.creation-preset>i{color:#655e6b;font-size:17px;font-style:normal;text-align:center}
+.creation-preset.is-active{border-color:#664d83;background:linear-gradient(145deg,#251d2e,#17141b);box-shadow:inset 0 0 0 1px rgba(167,139,250,.08)}
+.creation-preset.is-active>span{background:#332541;color:#e1cdfd}
+.creation-preset.is-active>i{color:#bfa4e2}
+.creation-default-note{padding:10px 11px;border:1px solid rgba(147,105,193,.2);border-radius:14px;display:grid;grid-template-columns:28px minmax(0,1fr);align-items:start;gap:8px;background:rgba(121,82,164,.07)}
+.creation-default-note>span{width:28px;height:28px;border-radius:9px;display:grid;place-items:center;background:rgba(147,105,193,.12);color:#c9b3e8;font-size:12px}
+.creation-default-note p{margin:0;display:grid;gap:2px}
+.creation-default-note strong{font-size:10px}
+.creation-default-note small{color:#8e8794;font-size:9px;line-height:1.4}
+.creation-default-note--neutral{border-color:#2e2b33;background:#151417}
+.creation-default-note--neutral>span{background:#211d27}
+.creation-optional{margin-left:5px;color:#6f6975;font-size:8px;font-weight:500;text-transform:none;letter-spacing:0}
+.creation-inline-toggle{margin-top:2px;padding:10px 11px;border:1px solid #2e2a32;border-radius:14px;background:#151417}
+.creation-review-card{padding:12px;border:1px solid #322d37;border-radius:18px;display:grid;grid-template-columns:48px minmax(0,1fr);gap:11px;align-items:center;background:linear-gradient(145deg,#19161c,#131315)}
+.creation-review-card__icon{width:48px;height:48px;border-radius:15px;display:grid;place-items:center;background:#292031;color:#dcc8f5;font-size:21px}
+.creation-review-card>div:last-child{min-width:0;display:grid;gap:2px}
+.creation-review-card small,.creation-review-block>span{color:#817a88;font-size:8px;font-weight:750;letter-spacing:.08em;text-transform:uppercase}
+.creation-review-card strong{overflow-wrap:anywhere;font-size:15px}
+.creation-review-card span{color:#99919f;font-size:9px;line-height:1.35}
+.creation-review-block{padding:11px;border:1px solid #2c2930;border-radius:15px;background:#141416}
+.creation-review-block p{margin:6px 0 0;color:#98919d;font-size:10px;line-height:1.5;white-space:pre-wrap}
+.creation-review-block ul{margin:7px 0 0;padding-left:18px;color:#aba3b1;font-size:10px;line-height:1.55}
+.creation-wizard__actions{flex:0 0 auto;margin-top:auto;padding-top:10px;border-top:1px solid rgba(255,255,255,.05);background:#121214}
+.control-character-editor .v2-sheet-head+section::before{content:"База листа создаётся автоматически: все 6 характеристик = 10, спасброски и навыки без владения. После создания всё можно изменить в карточке персонажа.";display:block;margin-bottom:12px;padding:10px 11px;border:1px solid rgba(147,105,193,.16);border-radius:13px;background:rgba(121,82,164,.055);color:#9b93a1;font-size:9px;line-height:1.45}
+@media(max-width:520px){.creation-preset-grid{grid-template-columns:1fr}.creation-preset{min-height:78px}.creation-wizard__step{padding-inline:12px}.creation-wizard__progress{padding-inline:12px}.creation-wizard__actions{padding-inline:12px}}

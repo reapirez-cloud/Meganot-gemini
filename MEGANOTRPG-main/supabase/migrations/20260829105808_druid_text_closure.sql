@@ -1,0 +1,7 @@
+-- Production migration ledger marker.
+-- The Druid text closure was applied through the connected Supabase migration API
+-- and production recorded it as version 20260829105808 / druid_text_closure.
+--
+-- The idempotent source migration remains in 20260829143000_druid_text_closure.sql
+-- so fresh environments still receive the complete reference-text payload.
+-- This marker intentionally performs no database changes.

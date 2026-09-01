@@ -1,0 +1,341 @@
+.reference-guide-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 138;
+  background: #0c0c0f;
+  color: var(--text, #f4f4f5);
+  overflow: hidden;
+}
+
+.reference-guide-page {
+  width: min(100%, 720px);
+  height: 100dvh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  background: #0c0c0f;
+}
+
+.reference-guide-header {
+  min-height: 66px;
+  padding: max(10px, env(safe-area-inset-top)) 14px 8px;
+  display: grid;
+  grid-template-columns: 42px 1fr 42px;
+  align-items: center;
+  border-bottom: 1px solid rgba(255,255,255,.07);
+}
+
+.reference-guide-header > div {
+  min-width: 0;
+  text-align: center;
+}
+
+.reference-guide-header h2 {
+  margin: 0;
+  font-size: 17px;
+}
+
+.reference-guide-header p {
+  margin: 2px 0 0;
+  color: var(--muted, #9999a3);
+  font-size: 11px;
+}
+
+.reference-guide-content {
+  flex: 1;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 12px 12px calc(24px + env(safe-area-inset-bottom));
+}
+
+.reference-guide-content--list,
+.reference-guide-content--detail {
+  padding-top: 10px;
+}
+
+.reference-guide-intro {
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid rgba(255,255,255,.065);
+}
+
+.reference-guide-intro__mark {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: rgba(255,255,255,.07);
+  font-size: 21px;
+}
+
+.reference-guide-intro div {
+  min-width: 0;
+  display: grid;
+  gap: 4px;
+}
+
+.reference-guide-intro strong {
+  font-size: 14px;
+}
+
+.reference-guide-intro p,
+.reference-guide-section-note p,
+.reference-guide-placeholder p {
+  margin: 0;
+  color: var(--muted, #9999a3);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.reference-guide-grid {
+  margin-top: 10px;
+  display: grid;
+  gap: 9px;
+}
+
+.reference-guide-section,
+.reference-class-card {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid rgba(255,255,255,.065);
+  color: inherit;
+  display: grid;
+  align-items: center;
+  text-align: left;
+}
+
+.reference-guide-section {
+  grid-template-columns: 44px 1fr auto;
+  gap: 11px;
+}
+
+.reference-guide-section__icon,
+.reference-class-card__monogram,
+.reference-class-hero__monogram {
+  display: grid;
+  place-items: center;
+  border-radius: 13px;
+  background: rgba(255,255,255,.07);
+  font-weight: 750;
+}
+
+.reference-guide-section__icon {
+  width: 44px;
+  height: 44px;
+  font-size: 19px;
+}
+
+.reference-guide-section__copy {
+  min-width: 0;
+  display: grid;
+  gap: 3px;
+}
+
+.reference-guide-section__copy strong {
+  font-size: 14px;
+}
+
+.reference-guide-section__copy small {
+  color: #c6c6cc;
+  font-size: 11px;
+  line-height: 1.38;
+}
+
+.reference-guide-section__copy em,
+.reference-class-card__copy em {
+  color: var(--muted, #8d8d97);
+  font-size: 10px;
+  font-style: normal;
+}
+
+.reference-guide-section__chevron {
+  font-size: 22px;
+  opacity: .5;
+}
+
+.reference-guide-section-note {
+  padding: 3px 2px 12px;
+  display: grid;
+  gap: 4px;
+}
+
+.reference-guide-section-note strong {
+  font-size: 13px;
+}
+
+.reference-class-list {
+  display: grid;
+  gap: 8px;
+}
+
+.reference-class-card {
+  grid-template-columns: 40px 1fr auto;
+  gap: 10px;
+}
+
+.reference-class-card__monogram {
+  width: 40px;
+  height: 40px;
+  font-size: 16px;
+}
+
+.reference-class-card__copy {
+  min-width: 0;
+  display: grid;
+  gap: 3px;
+}
+
+.reference-class-card__title {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  min-width: 0;
+}
+
+.reference-class-card__title strong {
+  font-size: 14px;
+}
+
+.reference-class-card__title small {
+  color: var(--muted, #90909a);
+  font-size: 10px;
+}
+
+.reference-class-card__copy > span:not(.reference-class-card__title) {
+  color: #c5c5cb;
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.reference-class-hero {
+  padding: 15px;
+  display: grid;
+  grid-template-columns: 54px 1fr;
+  gap: 12px;
+  align-items: center;
+  border: 1px solid rgba(255,255,255,.065);
+}
+
+.reference-class-hero__monogram {
+  width: 54px;
+  height: 54px;
+  font-size: 21px;
+}
+
+.reference-class-hero h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.reference-class-hero div > span {
+  display: block;
+  margin-top: 1px;
+  color: var(--muted, #90909a);
+  font-size: 11px;
+}
+
+.reference-class-hero p {
+  margin: 5px 0 0;
+  color: #c9c9cf;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.reference-class-description {
+  padding: 16px 2px 5px;
+}
+
+.reference-class-description > span,
+.reference-subclass-section__head > span {
+  color: var(--muted, #95959f);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .055em;
+}
+
+.reference-class-description p {
+  margin: 6px 0 0;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.reference-subclass-section {
+  margin-top: 12px;
+}
+
+.reference-subclass-section__head {
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.reference-subclass-section__head small {
+  color: var(--muted, #8f8f99);
+  font-size: 11px;
+}
+
+.reference-subclass-list {
+  display: grid;
+  gap: 8px;
+}
+
+.reference-subclass-card {
+  padding: 12px 13px;
+  border: 1px solid rgba(255,255,255,.06);
+}
+
+.reference-subclass-card strong {
+  display: block;
+  font-size: 13px;
+}
+
+.reference-subclass-card p {
+  margin: 4px 0 0;
+  color: var(--muted, #9a9aa3);
+  font-size: 11px;
+  line-height: 1.42;
+}
+
+.reference-guide-content--empty {
+  display: grid;
+  align-items: start;
+}
+
+.reference-guide-placeholder {
+  margin-top: 10px;
+  padding: 24px 18px;
+  border: 1px solid rgba(255,255,255,.065);
+  text-align: center;
+}
+
+.reference-guide-placeholder > span {
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 10px;
+  display: grid;
+  place-items: center;
+  border-radius: 17px;
+  background: rgba(255,255,255,.07);
+  font-size: 22px;
+}
+
+.reference-guide-placeholder h3 {
+  margin: 0 0 6px;
+  font-size: 15px;
+}
+
+@media (max-width: 430px) {
+  .reference-guide-section {
+    grid-template-columns: 40px 1fr auto;
+    padding: 12px;
+  }
+  .reference-guide-section__icon {
+    width: 40px;
+    height: 40px;
+  }
+}

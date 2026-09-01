@@ -1,0 +1,155 @@
+.reference-class-rule-badges {
+  margin: 10px 2px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.reference-class-rule-badges span,
+.reference-class-rule-badges strong {
+  padding: 6px 9px;
+  border: 1px solid rgba(255, 255, 255, .07);
+  border-radius: 999px;
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.reference-class-rule-badges span {
+  color: #aaa5ae;
+  background: rgba(255, 255, 255, .035);
+}
+
+.reference-class-rule-badges strong {
+  border-color: rgba(101, 190, 126, .2);
+  background: rgba(74, 158, 98, .1);
+  color: #9bd7ac;
+}
+
+.reference-class-mechanics,
+.reference-voss-explanation,
+.reference-voss-note {
+  margin-top: 10px;
+  padding: 13px 14px;
+  border: 1px solid rgba(255, 255, 255, .065);
+}
+
+.reference-class-mechanics > span,
+.reference-voss-explanation > span,
+.reference-voss-note > span {
+  color: #8d8992;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.reference-class-mechanics p,
+.reference-voss-explanation p,
+.reference-voss-note p {
+  margin: 6px 0 0;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.reference-class-mechanics small {
+  display: block;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, .06);
+  color: #8dbd9b;
+  font-size: 10px;
+  line-height: 1.45;
+}
+
+/* Voss explanation is the readable bridge into the rule, not the joke. */
+.reference-voss-explanation {
+  border-color: rgba(127, 151, 184, .15);
+  background: linear-gradient(145deg, rgba(63, 79, 102, .12), rgba(255, 255, 255, .018));
+}
+
+.reference-voss-explanation > span {
+  color: #9caec5;
+}
+
+.reference-voss-explanation p {
+  color: #d3d8df;
+}
+
+/* Voss comment is deliberately warmer and visually separate from rules. */
+.reference-voss-note {
+  border-color: rgba(188, 150, 90, .13);
+  background: linear-gradient(145deg, rgba(105, 73, 35, .09), rgba(255, 255, 255, .018));
+}
+
+.reference-voss-note > span {
+  color: #bd9863;
+}
+
+.reference-voss-note p {
+  color: #c8b9a4;
+}
+
+.reference-class-feature-section {
+  margin-top: 14px;
+}
+
+.reference-class-feature-list {
+  display: grid;
+  gap: 8px;
+}
+
+.reference-class-feature {
+  padding: 12px 13px;
+  border: 1px solid rgba(255, 255, 255, .06);
+}
+
+.reference-class-feature header {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.reference-class-feature header > span {
+  flex: 0 0 auto;
+  padding: 3px 6px;
+  border-radius: 7px;
+  background: rgba(91, 163, 112, .1);
+  color: #8fcca1;
+  font-size: 8px;
+  font-weight: 800;
+}
+
+.reference-class-feature header strong {
+  min-width: 0;
+  font-size: 12px;
+}
+
+.reference-class-feature header em {
+  margin-left: auto;
+  color: #77717c;
+  font-size: 8px;
+  font-style: normal;
+}
+
+.reference-class-feature p {
+  margin: 7px 0 0;
+  color: #b8b5bd;
+  font-size: 11px;
+  line-height: 1.47;
+}
+
+.reference-class-feature blockquote,
+.reference-subclass-card blockquote {
+  margin: 8px 0 0;
+  padding: 8px 10px;
+  border-left: 2px solid rgba(188, 150, 90, .35);
+  border-radius: 0 9px 9px 0;
+  background: rgba(105, 73, 35, .06);
+  color: #a99b89;
+  font-size: 10px;
+  line-height: 1.45;
+}
+
+.reference-subclass-card blockquote {
+  font-style: normal;
+}

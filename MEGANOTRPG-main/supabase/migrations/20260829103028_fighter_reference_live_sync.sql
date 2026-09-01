@@ -1,0 +1,11 @@
+-- Production migration-history marker.
+--
+-- The Fighter reference hotfix was applied directly through the Supabase
+-- management API under migration version 20260829103028 before the canonical
+-- idempotent repository migration was committed.
+--
+-- The actual presentation-only implementation lives in:
+--   20260829132000_fighter_reference_live_sync.sql
+--
+-- Keep this marker so future migration reconciliation recognizes the version
+-- already recorded by production. It intentionally performs no SQL work.

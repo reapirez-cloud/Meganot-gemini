@@ -1,0 +1,120 @@
+.spell-author-byline {
+  margin: 2px 0 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--muted, #9999a3);
+  font-size: 11px;
+  line-height: 1.25;
+}
+
+.spell-author-byline:active { opacity: .65; }
+
+.spell-author-backdrop { z-index: 175; }
+
+.spell-author-sheet {
+  max-height: min(90dvh, 780px);
+  overflow-y: auto;
+  padding-bottom: calc(20px + env(safe-area-inset-bottom));
+}
+
+.spell-author-intro {
+  margin-top: 10px;
+  padding: 13px;
+  border: 1px solid rgba(255,255,255,.07);
+  border-radius: 15px;
+  background: rgba(255,255,255,.035);
+}
+
+.spell-author-intro p,
+.spell-author-intro blockquote,
+.spell-author-attitude p,
+.spell-author-attitude blockquote {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.spell-author-intro blockquote,
+.spell-author-attitude blockquote {
+  margin-top: 10px;
+  padding-left: 11px;
+  border-left: 2px solid rgba(255,255,255,.16);
+  color: #d2d2d6;
+  font-style: italic;
+}
+
+.spell-author-attitudes { margin-top: 18px; }
+.spell-author-attitudes > h4 { margin: 0 0 9px; font-size: 13px; }
+
+.spell-author-attitude {
+  padding: 12px 0;
+  border-top: 1px solid rgba(255,255,255,.065);
+}
+
+.spell-author-attitude__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.spell-author-attitude__head strong { font-size: 13px; }
+.spell-author-attitude__head span {
+  padding: 3px 7px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.065);
+  color: var(--muted, #9999a3);
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.spell-author-attitude h5 {
+  margin: 5px 0;
+  font-size: 12px;
+  color: #d7d7db;
+}
+
+.spell-author-attitude p { color: var(--muted, #a0a0a8); }
+
+.spell-author-description {
+  margin-top: 10px;
+  padding: 13px;
+  border: 1px solid rgba(255,255,255,.075);
+  border-radius: 15px;
+  background: rgba(255,255,255,.04);
+}
+
+.spell-author-description > span,
+.spell-author-comment > span {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--muted, #94949e);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+
+.spell-author-description p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.52;
+  white-space: pre-wrap;
+}
+
+.spell-author-comment {
+  margin: 15px 0 0;
+  padding: 12px 13px;
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 14px;
+  background: rgba(255,255,255,.025);
+}
+
+.spell-author-comment p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.48;
+  font-style: italic;
+  color: #d4d4d8;
+}

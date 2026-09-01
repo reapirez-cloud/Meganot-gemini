@@ -1,0 +1,5 @@
+import type { ChatActor } from "../../hooks/useChatActors"
+import CharacterAvatar from "../characters/CharacterAvatar"
+
+type Props={actors:ChatActor[];selected:ChatActor|null;onSelect:(actor:ChatActor)=>void;onClose:()=>void}
+export default function ChatActorPicker({actors,selected,onSelect,onClose}:Props){return <div className="sheet-backdrop" onMouseDown={onClose}><section className="bottom-sheet actor-picker" onMouseDown={(e)=>e.stopPropagation()}><div className="sheet-handle"/><header className="v2-sheet-head"><div><span>Личность в чате</span><h3>Писать от лица</h3><p>Это не меняет активного персонажа кампании.</p></div><button type="button" onClick={onClose}>×</button></header><div className="actor-picker-list">{actors.map((actor)=><button type="button" className={selected?.key===actor.key?"is-active":""} key={actor.key} onClick={()=>{onSelect(actor);onClose()}}><CharacterAvatar character={actor.character||{name:actor.label,avatar_url:actor.avatar_url}} size="small"/><span><strong>{actor.label}</strong><small>{actor.kind==="role"?"Системная роль":"Персонаж"}</small></span><em>{selected?.key===actor.key?"✓":"›"}</em></button>)}</div></section></div>}

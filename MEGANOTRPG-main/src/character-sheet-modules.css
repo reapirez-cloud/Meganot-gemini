@@ -1,0 +1,297 @@
+/* Compact modular presentation for the Character Engine sheet.
+ * Mechanics remain owned by CE; this file only changes composition.
+ */
+
+.sheet-v3__section-heading {
+  padding: 12px 14px 9px;
+}
+
+/* Core facts: two compact rows, no horizontal rail.
+ * Row 1 is deliberately HP / AC / Speed.
+ */
+.sheet-v3__combat {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 7px;
+  overflow: visible;
+  padding-bottom: 0;
+}
+
+.sheet-v3__combat > :nth-child(1) { order: 1; }
+.sheet-v3__combat > :nth-child(2) { order: 2; }
+.sheet-v3__combat > :nth-child(4) { order: 3; }
+.sheet-v3__combat > :nth-child(3) { order: 4; }
+.sheet-v3__combat > :nth-child(5) { order: 5; }
+.sheet-v3__combat > :nth-child(6) { order: 6; }
+
+.sheet-v3__combat button,
+.sheet-v3__combat .sheet-v3__vital {
+  min-width: 0;
+  min-height: 74px;
+  padding: 8px 6px;
+  border-radius: 16px;
+  gap: 3px;
+}
+
+.sheet-v3__combat button strong,
+.sheet-v3__combat .sheet-v3__vital strong {
+  font-size: 21px;
+}
+
+.sheet-v3__combat button small {
+  font-size: 8px;
+}
+
+/* Abilities are modules, not pages. All six stay visible at once. */
+.sheet-v3__ability-tabs,
+.sheet-v3__swipe-hint {
+  display: none;
+}
+
+.sheet-v3__abilities {
+  padding-bottom: 0;
+}
+
+.sheet-v3__ability-rail {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  overflow: visible;
+  padding: 0 12px 12px;
+  scroll-snap-type: none;
+}
+
+.sheet-v3__ability-page {
+  width: auto;
+  min-width: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
+  overflow: hidden;
+  border: 1px solid var(--profile-line);
+  border-radius: 16px;
+  background: var(--profile-card-raised);
+  scroll-snap-align: none;
+}
+
+.sheet-v3__ability-score,
+.sheet-v3__skill-column {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.sheet-v3__ability-score {
+  padding: 8px;
+  display: grid;
+  grid-template-columns: 54px minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+}
+
+.sheet-v3__ability-score > button {
+  width: 54px;
+  min-width: 54px;
+  border-radius: 15px;
+  padding: 4px;
+}
+
+.sheet-v3__ability-score > button strong {
+  font-size: 22px;
+}
+
+.sheet-v3__ability-score > button span {
+  font-size: 8px;
+}
+
+.sheet-v3__ability-score > button em {
+  font-size: 10px;
+}
+
+.sheet-v3__ability-score > div {
+  gap: 4px;
+}
+
+.sheet-v3__ability-score > div > span {
+  font-size: 11px;
+}
+
+.sheet-v3__ability-score > div > button {
+  min-height: 30px;
+  padding: 0 7px;
+  border-radius: 9px;
+  font-size: 9px;
+}
+
+.sheet-v3__ability-score > div > button strong {
+  font-size: 10px;
+}
+
+.sheet-v3__skill-column {
+  border-top: 1px solid var(--profile-line);
+}
+
+.sheet-v3__skill-column button {
+  min-height: 32px;
+  padding: 4px 8px;
+  gap: 5px;
+  grid-template-columns: 12px minmax(0, 1fr) auto;
+}
+
+.sheet-v3__skill-column button strong {
+  font-size: 10px;
+}
+
+.sheet-v3__skill-column button small {
+  font-size: 7px;
+}
+
+.sheet-v3__skill-column button b {
+  font-size: 11px;
+}
+
+.sheet-v3__skill-column > p {
+  padding: 10px;
+  font-size: 9px;
+}
+
+/* Resources become independent cards so class resources can later receive
+ * their own icon/tone/display metadata without changing sheet structure.
+ */
+.sheet-v3__resource-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  padding: 0 12px 12px;
+  border-top: 0;
+}
+
+.sheet-v3__resource-list button,
+.sheet-v3__resource-list button:first-child {
+  min-width: 0;
+  min-height: 68px;
+  padding: 10px 11px;
+  border: 1px solid var(--profile-line);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, .025);
+}
+
+.sheet-v3__resource-list strong {
+  font-size: 11px;
+}
+
+.sheet-v3__resource-list b {
+  font-size: 16px;
+}
+
+/* Unique/class/item actions are cards too. A future source only supplies an
+ * action; the sheet decides how modules are arranged.
+ */
+.sheet-v3__action-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  padding: 0 12px 12px;
+  border-top: 0;
+}
+
+.sheet-v3__action-list > button,
+.sheet-v3__action-list > button:first-child {
+  min-height: 78px;
+  padding: 9px 10px;
+  border: 1px solid var(--profile-line);
+  border-radius: 15px;
+  grid-template-columns: 34px minmax(0, 1fr) 12px;
+  gap: 8px;
+  background: rgba(255, 255, 255, .025);
+}
+
+.sheet-v3__action-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 11px;
+}
+
+.sheet-v3__action-values {
+  grid-column: 2 / 4;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 3px 7px;
+}
+
+.sheet-v3__action-values em {
+  font-size: 9px;
+}
+
+.sheet-v3__chevron {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+.sheet-v3__feature-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  padding: 0 12px 12px;
+  border-top: 0;
+}
+
+.sheet-v3__feature-list > article,
+.sheet-v3__feature-list > article:first-child {
+  min-width: 0;
+  padding: 11px;
+  border: 1px solid var(--profile-line);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, .025);
+}
+
+.sheet-v3__feature-list p {
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+@media (max-width: 620px) {
+  .sheet-v3__ability-rail {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 430px) {
+  .sheet-v3__combat {
+    gap: 6px;
+  }
+
+  .sheet-v3__combat button,
+  .sheet-v3__combat .sheet-v3__vital {
+    min-height: 68px;
+    border-radius: 14px;
+  }
+
+  .sheet-v3__combat button strong,
+  .sheet-v3__combat .sheet-v3__vital strong {
+    font-size: 19px;
+  }
+
+  .sheet-v3__ability-rail {
+    gap: 6px;
+    padding-inline: 10px;
+  }
+
+  .sheet-v3__ability-score {
+    grid-template-columns: 48px minmax(0, 1fr);
+    gap: 6px;
+    padding: 7px;
+  }
+
+  .sheet-v3__ability-score > button {
+    width: 48px;
+    min-width: 48px;
+  }
+
+  .sheet-v3__resource-list,
+  .sheet-v3__action-list,
+  .sheet-v3__feature-list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

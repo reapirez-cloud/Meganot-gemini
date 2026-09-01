@@ -1,0 +1,818 @@
+/* Character sheet v4 — compact game UI. Core information never relies on horizontal overflow. */
+
+.character-profile-v2 .profile-v3__hero {
+  grid-template-columns: 88px minmax(0, 1fr) auto;
+  gap: 13px;
+  padding: 13px;
+  border-radius: 20px;
+  background: linear-gradient(145deg, rgba(24, 22, 30, .98), rgba(14, 14, 18, .98));
+  box-shadow: 0 12px 34px rgba(0, 0, 0, .2);
+}
+
+.character-profile-v2 .profile-v3__portrait {
+  width: 88px;
+  border-radius: 20px;
+}
+
+.character-profile-v2 .profile-v3__class {
+  display: none;
+}
+
+.character-profile-v2 .profile-v3__identity > p {
+  margin-top: 5px;
+}
+
+.character-profile-v2 .profile-v3__bio {
+  margin-top: 8px !important;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  font-size: 11px;
+}
+
+.character-profile-v2 .profile-v3__reference {
+  min-width: 46px;
+  width: 46px;
+  min-height: 46px;
+  padding: 0;
+  justify-content: center;
+  border-radius: 14px;
+}
+
+.character-profile-v2 .profile-v3__reference > span:first-child {
+  width: 30px;
+  height: 30px;
+  flex-basis: 30px;
+}
+
+.character-profile-v2 .profile-v3__reference > span:last-child {
+  display: none;
+}
+
+.character-profile-v2 .profile-v3__tabs {
+  margin: 8px 0 12px;
+  padding: 4px;
+  border-radius: 15px;
+  background: rgba(12, 12, 15, .9);
+}
+
+.character-profile-v2 .profile-v3__tabs button {
+  min-width: 62px;
+  min-height: 40px;
+  padding: 4px 8px;
+  gap: 2px;
+  border-radius: 11px;
+  font-size: 9px;
+}
+
+.character-profile-v2 .profile-v3__tabs button > span {
+  font-size: 12px;
+}
+
+.sheet-v4 {
+  width: 100%;
+  min-width: 0;
+  gap: 10px;
+}
+
+.sheet-v4 .sheet-v3__admin {
+  margin-bottom: 1px;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Combat dashboard                                                            */
+/* -------------------------------------------------------------------------- */
+
+.sheet-v4__combat {
+  width: 100%;
+  min-width: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 7px;
+  overflow: visible;
+}
+
+.sheet-v4__combat button,
+.sheet-v4__combat .sheet-v3__vital {
+  width: 100%;
+  min-width: 0;
+  min-height: 68px;
+  padding: 9px 10px;
+  border: 1px solid var(--profile-line);
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 5px;
+  overflow: hidden;
+  background: linear-gradient(160deg, rgba(25, 24, 29, .96), rgba(17, 17, 21, .98));
+  text-align: left;
+}
+
+.sheet-v4__combat button > span {
+  max-width: 100%;
+  overflow: hidden;
+  color: #77727d;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: .07em;
+  line-height: 1.1;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.sheet-v4__combat button strong {
+  max-width: 100%;
+  overflow: hidden;
+  color: #f2eef5;
+  font-size: 22px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -.025em;
+  line-height: 1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sheet-v4__combat button strong em {
+  color: #817b87;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 650;
+}
+
+.sheet-v4__combat button small {
+  max-width: 100%;
+  overflow: hidden;
+  color: #66616c;
+  font-size: 8px;
+  line-height: 1.1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sheet-v4__combat .sheet-v3__vital {
+  grid-column: 1 / -1;
+  min-height: 76px;
+  padding: 11px 13px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    "label value"
+    "detail value";
+  align-items: center;
+  gap: 2px 12px;
+  border-color: rgba(224, 91, 116, .18);
+  background:
+    radial-gradient(circle at 100% 120%, rgba(212, 63, 91, .16), transparent 46%),
+    linear-gradient(160deg, rgba(28, 22, 27, .98), rgba(17, 17, 21, .98));
+}
+
+.sheet-v4__combat .sheet-v3__vital > span {
+  grid-area: label;
+  color: #a47982;
+}
+
+.sheet-v4__combat .sheet-v3__vital > strong {
+  grid-area: value;
+  justify-self: end;
+  font-size: 27px;
+}
+
+.sheet-v4__combat .sheet-v3__vital > small {
+  grid-area: detail;
+  align-self: start;
+  color: #766a70;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Abilities                                                                   */
+/* -------------------------------------------------------------------------- */
+
+.sheet-v4__abilities {
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(19, 19, 23, .98), rgba(16, 16, 20, .98));
+}
+
+.sheet-v4__abilities .sheet-v3__section-heading {
+  padding: 13px 14px 10px;
+}
+
+.sheet-v4__abilities .sheet-v3__section-heading > div > span {
+  font-size: 8px;
+}
+
+.sheet-v4__abilities .sheet-v3__section-heading h3 {
+  font-size: 15px;
+}
+
+.sheet-v4__abilities .sheet-v3__ability-tabs {
+  margin: 0 12px 9px;
+  padding: 3px;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 3px;
+  border: 1px solid rgba(255, 255, 255, .055);
+  border-radius: 12px;
+  background: rgba(8, 8, 11, .58);
+}
+
+.sheet-v4__abilities .sheet-v3__ability-tabs button {
+  min-width: 0;
+  min-height: 34px;
+  padding: 0 2px;
+  border-radius: 9px;
+  font-size: 9px;
+  letter-spacing: .02em;
+}
+
+.sheet-v4__abilities .sheet-v3__ability-tabs button.is-active {
+  background: linear-gradient(145deg, rgba(139, 92, 246, .23), rgba(139, 92, 246, .1));
+  color: #e6dcff;
+  box-shadow: inset 0 0 0 1px rgba(167, 139, 250, .15);
+}
+
+.sheet-v4__abilities .sheet-v3__ability-rail {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  display: flex;
+  flex-flow: row nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+}
+
+.sheet-v4__abilities .sheet-v3__ability-rail::-webkit-scrollbar {
+  display: none;
+}
+
+.sheet-v4__abilities .sheet-v3__ability-page {
+  flex: 0 0 100%;
+  width: 100%;
+  min-width: 100%;
+  max-width: 100%;
+  padding: 0 12px 12px;
+  display: grid;
+  grid-template-columns: minmax(0, .78fr) minmax(0, 1.22fr);
+  align-items: start;
+  gap: 8px;
+  box-sizing: border-box;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+.sheet-v4__abilities .sheet-v3__ability-score,
+.sheet-v4__abilities .sheet-v3__skill-column {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  min-height: 0;
+  height: auto;
+  box-sizing: border-box;
+}
+
+.sheet-v4__abilities .sheet-v3__ability-score {
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 66px minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--profile-line);
+  border-radius: 15px;
+  background: rgba(255, 255, 255, .022);
+}
+
+.sheet-v4__abilities .sheet-v3__ability-score > button {
+  width: 66px;
+  min-width: 66px;
+  height: 66px;
+  min-height: 66px;
+  aspect-ratio: auto;
+  padding: 5px;
+  border-radius: 18px;
+}
+
+.sheet-v4__abilities .sheet-v3__ability-score > button span {
+  font-size: 9px;
+}
+
+.sheet-v4__abilities .sheet-v3__ability-score > button strong {
+  font-size: 25px;
+  font-variant-numeric: tabular-nums;
+}
+
+.sheet-v4__abilities .sheet-v3__ability-score > button em {
+  font-size: 10px;
+}
+
+.sheet-v4__abilities .sheet-v3__ability-score > div {
+  min-width: 0;
+  max-width: 100%;
+  min-height: 0;
+  display: grid;
+  align-content: center;
+  gap: 7px;
+}
+
+.sheet-v4__abilities .sheet-v3__ability-score > div > span {
+  min-width: 0;
+  overflow: hidden;
+  color: #ddd8e1;
+  font-size: 12px;
+  font-weight: 760;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sheet-v4__abilities .sheet-v3__ability-score > div > button {
+  width: 100%;
+  min-width: 0;
+  min-height: 38px;
+  padding: 0 8px;
+  grid-template-columns: 12px minmax(0, 1fr) auto;
+  gap: 6px;
+  border-radius: 10px;
+  font-size: 9px;
+  box-sizing: border-box;
+}
+
+.sheet-v4__abilities .sheet-v3__ability-score > div > button strong {
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+
+.sheet-v4__abilities .sheet-v3__skill-column {
+  overflow: hidden;
+  display: grid;
+  align-content: start;
+  border: 1px solid var(--profile-line);
+  border-radius: 15px;
+  background: rgba(255, 255, 255, .016);
+}
+
+.sheet-v4__abilities .sheet-v3__skill-column button {
+  width: 100%;
+  min-width: 0;
+  min-height: 42px;
+  padding: 7px 10px;
+  grid-template-columns: 14px minmax(0, 1fr) auto;
+  gap: 7px;
+  box-sizing: border-box;
+}
+
+.sheet-v4__abilities .sheet-v3__skill-column button > span {
+  min-width: 0;
+  max-width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.sheet-v4__abilities .sheet-v3__skill-column button strong {
+  min-width: 0;
+  overflow: hidden;
+  font-size: 11px;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sheet-v4__abilities .sheet-v3__skill-column button small {
+  font-size: 7px;
+}
+
+.sheet-v4__abilities .sheet-v3__skill-column button b {
+  color: #e6e1e9;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.sheet-v4__abilities .sheet-v3__skill-column > p {
+  margin: 0;
+  padding: 17px 12px;
+  color: #716b77;
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+.sheet-v4__abilities .sheet-v3__swipe-hint {
+  display: none;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Directory / focused subsections                                             */
+/* -------------------------------------------------------------------------- */
+
+.sheet-v4__directory {
+  overflow: hidden;
+  border: 1px solid var(--profile-line);
+  border-radius: 18px;
+  background: var(--profile-card);
+}
+
+.sheet-v4__directory > header {
+  padding: 14px 14px 11px;
+}
+
+.sheet-v4__directory > header small,
+.sheet-v4__focus-head small {
+  display: block;
+  margin-bottom: 4px;
+  color: #79727f;
+  font-size: 8px;
+  font-weight: 780;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.sheet-v4__directory > header h3,
+.sheet-v4__focus-head h3 {
+  margin: 0;
+  color: #f1eef4;
+  font-size: 15px;
+  letter-spacing: -.02em;
+}
+
+.sheet-v4__directory > header p,
+.sheet-v4__focus-head p {
+  margin: 5px 0 0;
+  color: #77717d;
+  font-size: 10px;
+  line-height: 1.45;
+}
+
+.sheet-v4__directory-list {
+  border-top: 1px solid var(--profile-line);
+}
+
+.sheet-v4__directory-list > button {
+  width: 100%;
+  min-width: 0;
+  min-height: 61px;
+  padding: 9px 12px;
+  border: 0;
+  border-top: 1px solid var(--profile-line);
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr) 14px;
+  align-items: center;
+  gap: 10px;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  transition: background .15s ease, transform .15s ease;
+}
+
+.sheet-v4__directory-list > button:first-child {
+  border-top: 0;
+}
+
+.sheet-v4__directory-list > button:active {
+  background: rgba(255, 255, 255, .025);
+  transform: scale(.995);
+}
+
+.sheet-v4__directory-list > button:disabled {
+  opacity: .55;
+}
+
+.sheet-v4__directory-icon {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(167, 139, 250, .12);
+  border-radius: 12px;
+  background: rgba(139, 92, 246, .075);
+  color: #b9a4ea;
+  font-size: 13px;
+}
+
+.sheet-v4__directory-list > button > span:nth-child(2) {
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.sheet-v4__directory-list > button small {
+  color: #746e79;
+  font-size: 8px;
+  font-weight: 760;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+}
+
+.sheet-v4__directory-list > button strong {
+  min-width: 0;
+  overflow: hidden;
+  color: #ece9ef;
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sheet-v4__directory-list > button em {
+  min-width: 0;
+  overflow: hidden;
+  color: #77717d;
+  font-size: 9px;
+  font-style: normal;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sheet-v4__directory-list > button > b {
+  color: #5d5762;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.sheet-v4__focus {
+  overflow: hidden;
+  border: 1px solid var(--profile-line);
+  border-radius: 18px;
+  background: var(--profile-card);
+  scroll-margin-top: 72px;
+}
+
+.sheet-v4__focus-head {
+  min-height: 75px;
+  padding: 12px 13px;
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr);
+  align-items: start;
+  gap: 10px;
+  border-bottom: 1px solid var(--profile-line);
+}
+
+.sheet-v4__focus-head > button {
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--profile-line);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, .03);
+  color: #c3bdc9;
+  font-size: 17px;
+}
+
+.sheet-v4__focus-list {
+  border-top: 0 !important;
+}
+
+.sheet-v4__focus-add {
+  width: calc(100% - 24px);
+  min-height: 42px;
+  margin: 11px 12px;
+  border: 1px solid rgba(167, 139, 250, .18);
+  border-radius: 13px;
+  background: rgba(139, 92, 246, .08);
+  color: #cdbfff;
+  font-size: 10px;
+  font-weight: 750;
+}
+
+.sheet-v4__feature-list {
+  border-top: 1px solid var(--profile-line);
+}
+
+.sheet-v4__empty {
+  padding: 24px 16px;
+  color: #77717d;
+  font-size: 11px;
+  line-height: 1.45;
+  text-align: center;
+}
+
+.sheet-v4__group {
+  border-bottom: 1px solid var(--profile-line);
+}
+
+.sheet-v4__group:last-child {
+  border-bottom: 0;
+}
+
+.sheet-v4__identity-list {
+  display: grid;
+}
+
+.sheet-v4__identity-list > div {
+  min-height: 62px;
+  padding: 11px 14px;
+  border-top: 1px solid var(--profile-line);
+  display: grid;
+  align-content: center;
+  gap: 4px;
+}
+
+.sheet-v4__identity-list > div:first-child {
+  border-top: 0;
+}
+
+.sheet-v4__identity-list span {
+  color: #77717d;
+  font-size: 8px;
+  font-weight: 750;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.sheet-v4__identity-list strong {
+  color: #eeeaf1;
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.sheet-v4__story-list {
+  padding-top: 12px;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Mobile                                                                      */
+/* -------------------------------------------------------------------------- */
+
+@media (max-width: 620px) {
+  .character-profile-v2 .profile-v3 {
+    padding: 9px 10px 112px;
+  }
+
+  .character-profile-v2 .profile-v3__hero {
+    grid-template-columns: 74px minmax(0, 1fr) 40px;
+    gap: 10px;
+    padding: 11px;
+    border-radius: 18px;
+  }
+
+  .character-profile-v2 .profile-v3__portrait {
+    width: 74px;
+    border-radius: 17px;
+  }
+
+  .character-profile-v2 .profile-v3__portrait > span {
+    font-size: 29px;
+  }
+
+  .character-profile-v2 .profile-v3__portrait > i {
+    right: 5px;
+    bottom: 5px;
+    width: 25px;
+    height: 25px;
+    border-radius: 8px;
+    font-size: 10px;
+  }
+
+  .character-profile-v2 .profile-v3__name-row h2 {
+    font-size: 19px;
+  }
+
+  .character-profile-v2 .profile-v3__active {
+    padding: 4px 6px;
+    font-size: 7px;
+  }
+
+  .character-profile-v2 .profile-v3__reference {
+    width: 40px;
+    min-width: 40px;
+    min-height: 40px;
+    border-radius: 12px;
+  }
+
+  .character-profile-v2 .profile-v3__reference > span:first-child {
+    width: 27px;
+    height: 27px;
+    flex-basis: 27px;
+    font-size: 13px;
+  }
+
+  .sheet-v4__combat {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+  }
+
+  .sheet-v4__combat button,
+  .sheet-v4__combat .sheet-v3__vital {
+    min-width: 0;
+  }
+
+  .sheet-v4__combat button {
+    min-height: 64px;
+    padding: 8px;
+    border-radius: 14px;
+  }
+
+  .sheet-v4__combat button strong {
+    font-size: 20px;
+  }
+
+  .sheet-v4__combat .sheet-v3__vital {
+    min-height: 72px;
+    padding: 10px 12px;
+  }
+
+  .sheet-v4__combat .sheet-v3__vital > strong {
+    font-size: 25px;
+  }
+
+  .sheet-v4__abilities .sheet-v3__ability-page {
+    padding-inline: 10px;
+    grid-template-columns: 1fr;
+    gap: 7px;
+  }
+
+  .sheet-v4__abilities .sheet-v3__ability-score {
+    grid-template-columns: 62px minmax(0, 1fr);
+    gap: 9px;
+    padding: 9px;
+  }
+
+  .sheet-v4__abilities .sheet-v3__ability-score > button {
+    width: 62px;
+    min-width: 62px;
+    height: 62px;
+    min-height: 62px;
+    border-radius: 17px;
+  }
+
+  .sheet-v4__abilities .sheet-v3__skill-column button {
+    min-height: 40px;
+    padding-block: 6px;
+  }
+
+  .sheet-v4__directory > header p {
+    max-width: 34ch;
+  }
+
+  .sheet-v4__story-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 380px) {
+  .sheet-v4__combat {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .sheet-v4__combat .sheet-v3__vital {
+    grid-column: 1 / -1;
+  }
+
+  .sheet-v4__combat button:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .sheet-v4__abilities .sheet-v3__ability-tabs {
+    margin-inline: 10px;
+  }
+
+  .sheet-v4__abilities .sheet-v3__ability-tabs button {
+    min-height: 33px;
+    font-size: 8px;
+  }
+
+  .sheet-v4__abilities .sheet-v3__skill-column button strong {
+    white-space: normal;
+  }
+}
+
+@media (max-width: 350px) {
+  .character-profile-v2 .profile-v3__hero {
+    grid-template-columns: 66px minmax(0, 1fr) 38px;
+    gap: 8px;
+    padding: 9px;
+  }
+
+  .character-profile-v2 .profile-v3__portrait {
+    width: 66px;
+  }
+
+  .character-profile-v2 .profile-v3__bio {
+    display: none;
+  }
+
+  .character-profile-v2 .profile-v3__tabs button {
+    min-width: 56px;
+  }
+
+  .sheet-v4__abilities .sheet-v3__ability-score {
+    grid-template-columns: 58px minmax(0, 1fr);
+    gap: 8px;
+    padding: 8px;
+  }
+
+  .sheet-v4__abilities .sheet-v3__ability-score > button {
+    width: 58px;
+    min-width: 58px;
+    height: 58px;
+    min-height: 58px;
+  }
+}

@@ -1,0 +1,186 @@
+/* v11 — game chats, room permissions, dice, spells, long rest */
+
+.chat-room-section--flood{order:-1}
+.chat-room-avatar--flood{background:linear-gradient(145deg,#334155,#18181b 72%);color:#e2e8f0}
+.chat-room-avatar--game{background:linear-gradient(145deg,#6d28d9,#27272a 72%)}
+
+.chat-v11-header{grid-template-columns:46px minmax(0,1fr) 46px}
+.chat-settings-button{width:40px;height:40px;min-height:40px!important;margin:auto;border:1px solid #2d2933;border-radius:13px;background:#17151b;color:#c4b5fd;display:grid!important;place-items:center;font-size:17px}
+.chat-header-spacer{width:40px;min-height:40px!important}
+
+.chat-v11-screen .message-list{padding-bottom:12px}
+.chat-character-bar{flex:0 0 auto;width:100%;min-height:54px;padding:7px 12px;border:0;border-top:1px solid #252529;background:#111114;display:flex;align-items:center;gap:9px;text-align:left}
+.chat-character-bar--role{cursor:default}
+.chat-character-bar__copy{min-width:0;flex:1;display:flex;flex-direction:column}
+.chat-character-bar__copy small{color:#77717e;font-size:8px;text-transform:uppercase;letter-spacing:.06em}
+.chat-character-bar__copy strong{margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#ede9fe;font-size:11px}
+.chat-character-bar__chevron{color:#625b6c;font-size:22px}
+.chat-readonly-line{flex:0 0 auto;padding:6px 10px;border-top:1px solid #3a3030;background:#1a1515;color:#d6a9a9;text-align:center;font-size:9px}
+.chat-action-button{border:1px solid #342a40!important;background:#17131d!important;color:#c4b5fd!important;font-size:24px;font-weight:300}
+.chat-action-button:disabled{opacity:.35}
+
+.chat-action-sheet,.room-settings-sheet{max-height:min(88dvh,760px);overflow-y:auto}
+.chat-action-block,.room-settings-section{margin-top:12px;padding:12px;border:1px solid #29272e;border-radius:16px;background:#151517}
+.chat-action-block__head,.room-settings-section__head{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.chat-action-block__head>div,.room-settings-section__head>div{display:flex;flex-direction:column}
+.chat-action-block__head strong,.room-settings-section__head strong{font-size:12px}
+.chat-action-block__head small,.room-settings-section__head small{margin-top:2px;color:#7d7784;font-size:9px;line-height:1.35}
+.chat-action-empty{padding:12px;color:#77717e;text-align:center;font-size:10px;line-height:1.4}
+
+.dice-builder{margin-top:10px;display:grid;grid-template-columns:1fr 78px 110px;gap:7px}
+.dice-builder label{color:#8b8592;font-size:9px}
+.dice-builder .app-input,.dice-builder .app-select{margin-top:5px}
+.chat-action-primary{width:100%;min-height:42px;margin-top:9px;border:1px solid #4a3565;border-radius:12px;background:#21172e;color:#ddd6fe;font-size:11px;font-weight:800}
+
+.chat-slot-strip{margin-top:9px;display:flex;gap:6px;overflow-x:auto;padding-bottom:2px}
+.chat-slot-strip>span{min-width:55px;padding:7px 8px;border:1px solid #334237;border-radius:11px;background:#121b15;display:flex;flex-direction:column;align-items:center}
+.chat-slot-strip small{color:#86a58e;font-size:8px}
+.chat-slot-strip strong{margin-top:2px;color:#bbf7d0;font-size:11px}
+
+.prepared-spell-list{margin-top:9px;display:flex;flex-direction:column;gap:6px}
+.prepared-spell-action{width:100%;min-height:54px;padding:7px 9px;border:1px solid #31543b;border-radius:13px;background:#111b14;display:flex;align-items:center;gap:9px;text-align:left}
+.prepared-spell-action:disabled{opacity:.42}
+.prepared-spell-action__rune{width:36px;height:36px;flex:0 0 36px;border-radius:11px;background:#1a3522;color:#bbf7d0;display:grid;place-items:center;font-weight:850}
+.prepared-spell-action__copy{min-width:0;flex:1;display:flex;flex-direction:column}
+.prepared-spell-action__copy strong{color:#dcfce7;font-size:11px}
+.prepared-spell-action__copy small{margin-top:2px;color:#83a58c;font-size:9px}
+.prepared-spell-action__go{color:#5c8b68;font-size:20px}
+
+.room-member-access-list,.room-rest-list{margin-top:9px;display:flex;flex-direction:column;gap:6px}
+.room-member-access-row{min-height:58px;padding:7px;border:1px solid #29272e;border-radius:13px;background:#121214;display:flex;align-items:center;gap:8px}
+.room-member-access-row__copy{min-width:0;flex:1;display:flex;flex-direction:column}
+.room-member-access-row__copy strong{font-size:11px}
+.room-member-access-row__copy small{margin-top:2px;color:#79737f;font-size:8px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.room-access-toggle{display:flex;flex-direction:column;align-items:center;gap:3px;color:#7f7987;font-size:8px}
+.room-access-toggle input{width:17px;height:17px;accent-color:#7c3aed}
+
+.room-rest-row{min-height:54px;padding:7px;border:1px solid #29272e;border-radius:13px;background:#121214;display:flex;align-items:center;gap:8px}
+.room-rest-row>div{min-width:0;flex:1;display:flex;flex-direction:column}
+.room-rest-row strong{font-size:11px}
+.room-rest-row small{margin-top:2px;color:#79737f;font-size:8px}
+.room-rest-row button{min-height:32px;padding:0 9px;border:1px solid #3f4a3d;border-radius:10px;background:#172018;color:#bbf7d0;font-size:9px;font-weight:750}
+.chat-settings-notice{margin-top:9px;padding:9px 10px;border:1px solid #31543b;border-radius:11px;background:#111b14;color:#bbf7d0;font-size:9px}
+
+.spell-prepared-toggle--active{border-color:#31543b!important;background:#111b14!important;color:#bbf7d0!important}
+.spell-card__copy em{background:#15351f!important;color:#bbf7d0!important}
+
+.spell-slot-editor{margin-top:12px;padding:11px;border:1px solid #2f2a36;border-radius:15px;background:#141416}
+.spell-slot-editor__head{display:flex;align-items:flex-end;justify-content:space-between;gap:10px}
+.spell-slot-editor__head strong{font-size:11px}
+.spell-slot-editor__head small{max-width:220px;color:#78717f;font-size:8px;line-height:1.35;text-align:right}
+.spell-slot-editor__grid{margin-top:9px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+.spell-slot-editor__grid label{padding:7px;border:1px solid #29272e;border-radius:11px;background:#111113;color:#8a8490;font-size:9px}
+.spell-slot-editor__grid label>span{display:block;margin-bottom:5px;color:#c4b5fd;font-weight:750}
+.spell-slot-editor__grid .app-input{min-height:36px}
+.spell-slot-editor__grid label>small{display:block;margin-top:4px;color:#6f6876;font-size:8px}
+
+@media(max-width:390px){
+  .dice-builder{grid-template-columns:1fr 70px 96px}
+  .room-member-access-row{gap:6px}
+  .room-access-toggle span{font-size:7px}
+  .spell-slot-editor__grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+
+/* v11.1 character resource controls */
+.character-resource-editor{max-height:min(88dvh,760px);overflow-y:auto}
+.resource-editor-section{margin-top:12px;padding:12px;border:1px solid #29272e;border-radius:16px;background:#151517}
+.resource-editor-section__head{display:flex;align-items:flex-end;justify-content:space-between;gap:10px}
+.resource-editor-section__head strong{font-size:12px}
+.resource-editor-section__head small{max-width:230px;color:#77717e;font-size:8px;line-height:1.35;text-align:right}
+.resource-hp-grid{margin-top:9px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+.resource-hp-grid label,.resource-slot-grid label{color:#817b87;font-size:9px}
+.resource-hp-grid .app-input,.resource-slot-grid .app-input{margin-top:5px}
+.resource-slot-grid{margin-top:9px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+.resource-slot-grid label{padding:7px;border:1px solid #29272e;border-radius:11px;background:#111113}
+.resource-slot-grid label>span{display:block;color:#c4b5fd;font-weight:750}
+.resource-slot-grid label>small{display:block;margin-top:4px;color:#6f6876;font-size:8px}
+.character-resource-card{padding:11px 12px}
+.character-resource-card__head{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.character-resource-card__head>div{display:flex;flex-direction:column}
+.character-resource-card__head strong{font-size:11px}
+.character-resource-card__head small{margin-top:2px;color:#77717e;font-size:8px}
+.character-slot-strip{margin-top:9px;display:flex;gap:6px;overflow-x:auto;padding-bottom:2px}
+.character-slot-strip>span{min-width:55px;padding:7px 8px;border:1px solid #334237;border-radius:11px;background:#121b15;display:flex;flex-direction:column;align-items:center}
+.character-slot-strip small{color:#86a58e;font-size:8px}
+.character-slot-strip strong{margin-top:2px;color:#bbf7d0;font-size:11px}
+.resource-empty-note{margin-top:9px;padding:9px;border:1px dashed #3b3541;border-radius:10px;color:#7f7788;text-align:center;font-size:9px}
+
+/* v11.2 mobile dice controls */
+.dice-builder--mobile{
+  grid-template-columns:1fr;
+  gap:10px;
+}
+.dice-select-field{
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+}
+.dice-step-field{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+.dice-step-field__label{
+  color:#8b8592;
+  font-size:9px;
+}
+.dice-stepper{
+  min-height:46px;
+  display:grid;
+  grid-template-columns:52px minmax(0,1fr) 52px;
+  gap:7px;
+  align-items:center;
+}
+.dice-stepper button{
+  min-height:46px;
+  border:1px solid #3a3147;
+  border-radius:12px;
+  background:#1a1620;
+  color:#ddd6fe;
+  font-size:25px;
+  line-height:1;
+  font-weight:500;
+}
+.dice-stepper button:disabled{
+  opacity:.3;
+}
+.dice-stepper strong{
+  min-height:46px;
+  border:1px solid #302b37;
+  border-radius:12px;
+  background:#101012;
+  display:grid;
+  place-items:center;
+  color:#f4f4f5;
+  font-size:16px;
+  font-variant-numeric:tabular-nums;
+}
+.dice-preset-row{
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:5px;
+}
+.dice-preset-row--modifier{
+  grid-template-columns:repeat(7,minmax(0,1fr));
+}
+.dice-preset{
+  min-height:32px;
+  padding:0 4px;
+  border:1px solid #2e2934;
+  border-radius:9px;
+  background:#121214;
+  color:#8d8794;
+  font-size:9px;
+  font-weight:700;
+}
+.dice-preset--active{
+  border-color:#5c4380;
+  background:#241a31;
+  color:#ddd6fe;
+}
+@media(max-width:390px){
+  .dice-builder--mobile{grid-template-columns:1fr}
+  .dice-stepper{grid-template-columns:48px minmax(0,1fr) 48px}
+  .dice-preset-row--modifier{gap:4px}
+  .dice-preset{min-height:30px;font-size:8px}
+}
