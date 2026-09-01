@@ -157,7 +157,7 @@ function actionIsAttack(action: ResolvedAction) {
   return Boolean(action.attack) || action.damage.some((entry) => Boolean(entry.dice))
 }
 
-function ResourceMeter({ resource, labels }: { resource: ResolvedResource; labels: Map<string, string> }) {
+function ResourceMeter({ key, resource, labels }: { key?: string | number; resource: ResolvedResource; labels: Map<string, string> }) {
   const max = Math.max(0, resource.max.value)
   const current = Math.max(0, Math.min(resource.current, max))
   return <div className="action-resource-meter"><div><span>{resourceName(resource, labels)}</span><strong>{current}/{max}</strong></div><progress max={Math.max(1, max)} value={current} /></div>
@@ -202,7 +202,8 @@ function SpellSlotFlow({ spells, contract, channel, setChannel, busy, onCast, em
   </div>
 }
 
-function SourceGroup({ group, kind, resources, labels, busy, onAction, onSpell }: {
+function SourceGroup({ key, group, kind, resources, labels, busy, onAction, onSpell }: {
+  key?: string | number
   group: ChatActionSourceGroup
   kind: "class" | "unique"
   resources: Map<string, ResolvedResource>

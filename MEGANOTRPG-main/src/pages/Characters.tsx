@@ -6,7 +6,7 @@ import { supabase } from "../lib/supabase"
 type Props = { onOpenCharacter: (id: string) => void }
 type LifeMap = Record<string, "alive" | "dead">
 
-function RosterCard({ character, note, dead, onOpen }: { character: { id: string; name: string; avatar_url: string | null; character_class: string; level: number; bio: string }; note?: string; dead?: boolean; onOpen: () => void }) {
+function RosterCard({ character, note, dead, onOpen }: { key?: string | number; character: { id: string; name: string; avatar_url: string | null; character_class: string; level: number; bio: string }; note?: string; dead?: boolean; onOpen: () => void }) {
   const meta = [character.character_class, `${character.level} уровень`, note, dead ? "мёртв" : ""].filter(Boolean).join(" · ")
   return <button type="button" className={`character-roster-card ${dead ? "is-dead" : ""}`} onClick={onOpen}><CharacterAvatar character={character} size="large"/><span><strong>{character.name}{dead && <i className="roster-dead-badge">† Мёртв</i>}</strong><small>{meta}</small>{character.bio && <p>{character.bio}</p>}</span><em>›</em></button>
 }

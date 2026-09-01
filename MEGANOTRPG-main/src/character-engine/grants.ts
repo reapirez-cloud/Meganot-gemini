@@ -59,17 +59,17 @@ function sensePayload(payload: GrantPayload | undefined): SenseGrantPayload {
   }
 
   const object = payloadObject(payload)
-  const range = typeof object.range === "number" && Number.isFinite(object.range) && object.range >= 0 ? object.range : undefined
-  if (object.range !== undefined && range === undefined) {
+  const range = object.range
+  const unit = object.unit
+  if (range !== undefined && (typeof range !== "number" || !Number.isFinite(range) || range < 0)) {
     throw new GrantEngineError("sense range must be a finite number >= 0")
   }
-  const unit = typeof object.unit === "string" ? object.unit : undefined
-  if (object.unit !== undefined && unit === undefined) {
+  if (unit !== undefined && typeof unit !== "string") {
     throw new GrantEngineError("sense unit must be a string")
   }
   return {
-    ...(range === undefined ? {} : { range }),
-    ...(unit === undefined ? {} : { unit }),
+    ...(range === undefined ? {} : { range: range as number }),
+    ...(unit === undefined ? {} : { unit: unit as string }),
   }
 }
 

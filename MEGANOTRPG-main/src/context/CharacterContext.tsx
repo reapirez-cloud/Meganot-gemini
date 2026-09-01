@@ -6,7 +6,7 @@ import {
   useMemo,
   useState,
 } from "react"
-import type { ReactNode } from "react"
+import type { ReactNode, FormEvent } from "react"
 
 import { createEngineCommandContext } from "../engine-contracts/index.ts"
 import { shapoklyak } from "../entity-engine/runtime.ts"
@@ -591,7 +591,7 @@ function JoinCampaign({
   const [joining, setJoining] = useState(false)
   const [joinError, setJoinError] = useState("")
 
-  async function submit(event: React.FormEvent) {
+  async function submit(event: FormEvent) {
     event.preventDefault()
     if (joining) return
     setJoining(true)

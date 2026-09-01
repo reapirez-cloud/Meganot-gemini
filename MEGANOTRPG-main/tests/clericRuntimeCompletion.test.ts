@@ -198,6 +198,7 @@ test("War Domain reaches parser, CE and Class tab with real finite resources and
   assert.ok(contract.actions.some((action) => action.key === "war_priest" && action.resourceCosts.some((cost) => cost.stateKey === "war_priest" && cost.amount === 1)))
 
   const presented = presentClassPackages(contract, [{
+    classAssignmentId: "test-assignment",
     classTemplateId: baseTemplate.id,
     className: baseTemplate.name,
     level: 6,

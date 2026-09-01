@@ -36,7 +36,8 @@ function outcomeLabel(value: unknown) {
   return "Записано"
 }
 
-function SpellTask({ characterId, task, spells, onChanged }: {
+function SpellTask({ key, characterId, task, spells, onChanged }: {
+  key?: string | number
   characterId: string
   task: SpellPreparationTask
   spells: ChatPreparationSpell[]
@@ -145,7 +146,8 @@ function SpellTask({ characterId, task, spells, onChanged }: {
   </section>
 }
 
-function ChoiceTask({ characterId, task, onChanged }: {
+function ChoiceTask({ key, characterId, task, onChanged }: {
+  key?: string | number
   characterId: string
   task: ChoicePreparationTask
   onChanged: () => void
@@ -187,7 +189,7 @@ function ChoiceTask({ characterId, task, onChanged }: {
     setBusy(true); setError("")
     const result = await commitGenaCharacterTemplateChoice(characterId, task.assignmentId, task.key, draft)
     setBusy(false)
-    if (!result.ok) { setError(result.error); return }
+    if (!result.ok) { setError((result as any).error || "Error"); return }
     setCommitted(true)
     onChanged()
   }
@@ -214,7 +216,8 @@ function ChoiceTask({ characterId, task, onChanged }: {
   </section>
 }
 
-function RollTask({ roomId, characterId, task, onChanged }: {
+function RollTask({ key, roomId, characterId, task, onChanged }: {
+  key?: string | number
   roomId: string
   characterId: string
   task: RollPreparationTask
@@ -248,7 +251,7 @@ function RollTask({ roomId, characterId, task, onChanged }: {
   </section>
 }
 
-function NoticeTask({ task }: { task: NoticePreparationTask }) {
+function NoticeTask({ key, task }: { key?: string | number; task: NoticePreparationTask }) {
   return <section className="rest-prep-task rest-prep-task--notice">
     <div className="rest-prep-task__head">
       <span>ⓘ</span>

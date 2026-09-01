@@ -33,7 +33,7 @@ import ReferenceGuide from "../components/reference/ReferenceGuide.tsx"
 import ContextActionSheet, { type ContextAction } from "../components/common/ContextActionSheet.tsx"
 import { useLongPressItem } from "../hooks/useLongPressItem.ts"
 
-type Props = { characterId: string; onBack: () => void; embedded?: boolean }
+type Props = { key?: string | number; characterId: string; onBack: () => void; embedded?: boolean }
 type Tab = "sheet" | "class" | "spells" | "inventory" | "diary" | "arts"
 type InventoryMode = "inventory" | "equipment"
 type Editor =

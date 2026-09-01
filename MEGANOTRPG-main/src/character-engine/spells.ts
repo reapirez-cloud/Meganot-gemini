@@ -78,8 +78,7 @@ function parseFormula(value: unknown, field: string): FormulaExpression {
 function parseIdentity(value: unknown): SpellIdentityDefinition {
   const object = asObject(value, "spell identity must be an object")
   const level = nonNegativeInteger(object.level, "spell.level")
-  const ritual = typeof object.ritual === "boolean" ? object.ritual : undefined
-  if (object.ritual !== undefined && ritual === undefined) {
+  if (object.ritual !== undefined && typeof object.ritual !== "boolean") {
     throw new SpellEngineError("spell.ritual must be boolean")
   }
 
@@ -87,7 +86,7 @@ function parseIdentity(value: unknown): SpellIdentityDefinition {
     name: nonEmptyString(object.name, "spell.name"),
     level,
     ...(object.school === undefined ? {} : { school: nonEmptyString(object.school, "spell.school") }),
-    ...(ritual === undefined ? {} : { ritual }),
+    ...(object.ritual === undefined ? {} : { ritual: object.ritual as boolean }),
   }
 }
 
@@ -96,13 +95,12 @@ function parsePreparation(value: unknown): SpellPreparationRule {
   const mode = nonEmptyString(object.mode, "spell preparation.mode")
 
   if (mode === "prepared") {
-    const defaultPrepared = typeof object.defaultPrepared === "boolean" ? object.defaultPrepared : undefined
-    if (object.defaultPrepared !== undefined && defaultPrepared === undefined) {
+    if (object.defaultPrepared !== undefined && typeof object.defaultPrepared !== "boolean") {
       throw new SpellEngineError("spell preparation.defaultPrepared must be boolean")
     }
     return {
       mode,
-      ...(defaultPrepared === undefined ? {} : { defaultPrepared }),
+      ...(object.defaultPrepared === undefined ? {} : { defaultPrepared: object.defaultPrepared as boolean }),
     }
   }
   if (mode === "always_prepared" || mode === "not_required") return { mode }
@@ -184,25 +182,21 @@ function parseMethod(value: unknown, index: number, spellLevel: number): SpellCa
     }
   }
 
-    const requiresPrepared = typeof object.requiresPrepared === "boolean" ? object.requiresPrepared : undefined
-    if (object.requiresPrepared !== undefined && requiresPrepared === undefined) {
-      throw new SpellEngineError(`spell methods[${index}].requiresPrepared must be boolean`)
-    }
-    return {
-      key: nonEmptyString(object.key, `spell methods[${index}].key`),
-      kind: nonEmptyString(object.kind, `spell methods[${index}].kind`),
-      ...(ability === undefined ? {} : { ability: ability as AbilityKey }),
-      ...(object.attackBonus === undefined
-        ? {}
-        : { attackBonus: parseFormula(object.attackBonus, `spell methods[${index}].attackBonus`) }),
-      ...(object.saveDc === undefined
-        ? {}
-        : { saveDc: parseFormula(object.saveDc, `spell methods[${index}].saveDc`) }),
-      ...(requiresPrepared === undefined
-        ? {}
-        : { requiresPrepared }),
-      ...(resourceOptions ? { resourceOptions } : {}),
-    }
+  return {
+    key: nonEmptyString(object.key, `spell methods[${index}].key`),
+    kind: nonEmptyString(object.kind, `spell methods[${index}].kind`),
+    ...(ability === undefined ? {} : { ability: ability as AbilityKey }),
+    ...(object.attackBonus === undefined
+      ? {}
+      : { attackBonus: parseFormula(object.attackBonus, `spell methods[${index}].attackBonus`) }),
+    ...(object.saveDc === undefined
+      ? {}
+      : { saveDc: parseFormula(object.saveDc, `spell methods[${index}].saveDc`) }),
+    ...(object.requiresPrepared === undefined
+      ? {}
+      : { requiresPrepared: object.requiresPrepared as boolean }),
+    ...(resourceOptions ? { resourceOptions } : {}),
+  }
 }
 
 /** Runtime validation + normalization for one spell access GRANT payload. */

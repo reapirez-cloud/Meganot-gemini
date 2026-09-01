@@ -130,10 +130,10 @@ test("PHB 2024 replaces the four duplicated 2014 school identities", () => {
     "subclass:wizard:illusionist",
   ])
 
-  assert.equal(WIZARD_SUBCLASSES.some((entry) => entry.catalogKey === "subclass:wizard:abjuration"), false)
-  assert.equal(WIZARD_SUBCLASSES.some((entry) => entry.catalogKey === "subclass:wizard:divination"), false)
-  assert.equal(WIZARD_SUBCLASSES.some((entry) => entry.catalogKey === "subclass:wizard:evocation"), false)
-  assert.equal(WIZARD_SUBCLASSES.some((entry) => entry.catalogKey === "subclass:wizard:illusion"), false)
+  assert.equal(WIZARD_SUBCLASSES.some((entry) => (entry.catalogKey as string) === "subclass:wizard:abjuration"), false)
+  assert.equal(WIZARD_SUBCLASSES.some((entry) => (entry.catalogKey as string) === "subclass:wizard:divination"), false)
+  assert.equal(WIZARD_SUBCLASSES.some((entry) => (entry.catalogKey as string) === "subclass:wizard:evocation"), false)
+  assert.equal(WIZARD_SUBCLASSES.some((entry) => (entry.catalogKey as string) === "subclass:wizard:illusion"), false)
 })
 
 test("future Wizard subclass packages must attach to Wizard, unlock at 3 and use 3/6/10/14 rows", () => {

@@ -269,16 +269,16 @@ export class CharacterRuntimeResolver {
       )
     }
 
-    const catalogIds = [...new Set(
+    const catalogIds: string[] = [...new Set(
       core.spells
         .map((spell) => spell.catalog_spell_id)
         .filter((id): id is string => Boolean(id)),
-    )]
-    const catalogSlugs = [...new Set(
+    )] as string[]
+    const catalogSlugs: string[] = [...new Set(
       resolvedView.contract.spells
         .map((spell) => catalogSlugFromResolvedKey(spell.key))
         .filter((slug): slug is string => Boolean(slug)),
-    )]
+    )] as string[]
 
     let catalog: CharacterRuntimeCatalogData = { rows: [], warnings: [] }
     try {

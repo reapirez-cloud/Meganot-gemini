@@ -138,7 +138,7 @@ test("higher-priority formula replaces lower-priority formula deterministically"
   ]
 
   assert.equal(resolveCharacter(base, state, contributions).combat.ac.value, 17)
-  assert.equal(resolveCharacter(base, state, contributions.toReversed()).combat.ac.value, 17)
+  assert.equal(resolveCharacter(base, state, [...contributions].reverse()).combat.ac.value, 17)
 })
 
 test("different equal-priority formulas are an explicit conflict", () => {

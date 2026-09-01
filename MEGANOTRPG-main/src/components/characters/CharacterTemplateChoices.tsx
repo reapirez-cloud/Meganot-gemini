@@ -20,10 +20,12 @@ function optionMatches(option: TemplateChoiceOptionState, query: string) {
 }
 
 function ChoiceCard({
+  key,
   characterId,
   state,
   canChoose,
 }: {
+  key?: string | number
   characterId: string
   state: TemplateChoiceState
   canChoose: boolean
@@ -61,7 +63,7 @@ function ChoiceCard({
     setError("")
     const result = await commitCharacterTemplateChoice(characterId, state.assignmentId, state.key, draft)
     setBusy(false)
-    if (!result.ok) setError(result.error)
+    if (!result.ok) setError((result as any).error || "Error")
   }
 
   if (state.status === "locked") {

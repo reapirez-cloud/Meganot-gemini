@@ -38,6 +38,7 @@ type DeleteTarget =
   | { kind: "link"; item: LocationLink }
 
 type LocationCardProps = {
+  key?: string | number
   location: LocationEntry
   eyebrow: string
   subzoneCount: number

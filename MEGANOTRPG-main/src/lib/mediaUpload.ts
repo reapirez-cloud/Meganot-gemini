@@ -7,9 +7,11 @@ const MAX_FILE_BYTES = 20 * 1024 * 1024
 const RESIZE_THRESHOLD_BYTES = 2.5 * 1024 * 1024
 const MAX_IMAGE_DIMENSION = 2560
 
-export type UploadImageResult =
-  | { ok: true; url: string }
-  | { ok: false; error: string }
+export type UploadImageResult = {
+  ok: boolean
+  url?: string
+  error?: string
+}
 
 export type UploadFileResult = UploadImageResult
 

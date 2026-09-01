@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react"
-import type { FormEvent } from "react"
+import type { CSSProperties, FormEvent } from "react"
 import ContextActionSheet from "../common/ContextActionSheet"
 import type { ContextAction } from "../common/ContextActionSheet"
 import { useWorldContent } from "../../hooks/useWorldContent"
@@ -203,7 +203,7 @@ export default function GmZoneManager({ onError }: Props) {
     {(localError || world.error) && <div className="auth-error">{localError || world.error}</div>}
 
     <div className="gm-clean-list gm-zone-list">
-      {flatZones.map(({ zone, depth, path }) => <article className="gm-clean-row gm-zone-row" key={zone.id} style={{ "--zone-depth": depth } as React.CSSProperties}>
+      {flatZones.map(({ zone, depth, path }) => <article className="gm-clean-row gm-zone-row" key={zone.id} style={{ "--zone-depth": depth } as CSSProperties}>
         <button className="gm-clean-row__main" type="button" onClick={() => openEditor(zone)} aria-label={`Редактировать зону ${path}`}>
           <span className="gm-zone-branch" aria-hidden="true">{depth ? "└" : "◇"}</span>
           <span className="gm-row-copy"><strong>{zone.name}</strong><small>{zone.summary || "Без краткого описания"}</small></span>

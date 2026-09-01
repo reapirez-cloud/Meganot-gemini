@@ -15,7 +15,7 @@ async function latestPolicyDefinition(policyName: string) {
 
   for (const file of files) {
     const sql = await readFile(new URL(file, migrationsDir), "utf8")
-    definitions.push(...sql.matchAll(pattern).map((match) => match[0]))
+    definitions.push(...Array.from(sql.matchAll(pattern)).map((match) => match[0]))
   }
 
   assert.ok(definitions.length > 0, `Policy ${policyName} must exist in migrations`)

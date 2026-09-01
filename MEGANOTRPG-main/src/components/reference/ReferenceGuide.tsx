@@ -22,6 +22,12 @@ import {
   getFighterSubclassFeatureVossNarration,
   getFighterSubclassVossNarration,
 } from "../../data/classes/fighterVossNarration"
+import {
+  wizardClassVossNarration,
+  getWizardBaseVossNarration,
+  getWizardSubclassFeatureVossNarration,
+  getWizardSubclassVossNarration,
+} from "../../data/classes/wizardVossNarration"
 import { useRuleTemplates } from "../../hooks/useRuleTemplates"
 import type { SpellClassKey } from "../../lib/spellCatalog"
 import type { RuleTemplate, RuleTemplateLevel } from "../../rule-templates/types"
@@ -37,6 +43,7 @@ type CharacterTarget = {
 type ReferenceSection = "home" | "spells" | "classes" | "class-detail" | "subclass-detail" | "bestiary" | "chaos"
 
 type Props = {
+  key?: string | number
   campaignId?: string
   character: CharacterTarget | null
   canManage: boolean
@@ -273,10 +280,16 @@ function staticSubclasses(entry: ClassReferenceEntry): ReferenceSubclassView[] {
     summary: item.summary,
     explanation: getClericSubclassVossNarration(item.id) || undefined,
   }))
+  if (entry.id === "wizard") return entry.subclasses.map((item) => ({
+    id: item.id,
+    name: item.name,
+    summary: item.summary,
+    explanation: getWizardSubclassVossNarration(item.id) || undefined,
+  }))
   return entry.subclasses.map((item) => ({ id: item.id, name: item.name, summary: item.summary }))
 }
 
-function FeatureCard({ feature, onOpen }: { feature: RuleFeatureView; onOpen: (feature: RuleFeatureView) => void }) {
+function FeatureCard({ key, feature, onOpen }: { key?: string | number; feature: RuleFeatureView; onOpen: (feature: RuleFeatureView) => void }) {
   return (
     <button className="reference-class-feature reference-class-feature--button surface" type="button" onClick={() => onOpen(feature)}>
       <span className="reference-class-feature__head">
@@ -341,7 +354,9 @@ export default function ReferenceGuide({
           ? getFighterSubclassVossNarration(id)
           : selectedClass.id === "cleric"
             ? getClericSubclassVossNarration(id)
-            : ""
+            : selectedClass.id === "wizard"
+              ? getWizardSubclassVossNarration(id)
+              : ""
       return {
         id,
         name: template.name || old?.name || id,
@@ -358,7 +373,7 @@ export default function ReferenceGuide({
       if (!fallbackById.has(item.id)) merged.push(item)
     }
 
-    return merged.sort((a, b) => (order.get(a.id) ?? 999) - (order.get(b.id) ?? 999) || a.name.localeCompare(b.name, "ru"))
+    return (merged as ReferenceSubclassView[]).sort((a, b) => (order.get(a.id) ?? 999) - (order.get(b.id) ?? 999) || a.name.localeCompare(b.name, "ru"))
   }, [classTemplate, selectedClass, templates])
 
   const selectedSubclassTemplate = useMemo(() => {
@@ -379,6 +394,12 @@ export default function ReferenceGuide({
       return features.map((feature) => ({
         ...feature,
         explanation: getClericBaseVossNarration(feature.level, feature.sourceKey) || feature.explanation,
+      }))
+    }
+    if (selectedClass?.id === "wizard") {
+      return features.map((feature) => ({
+        ...feature,
+        explanation: getWizardBaseVossNarration(feature.level, feature.sourceKey) || feature.explanation,
       }))
     }
     return features
@@ -403,6 +424,12 @@ export default function ReferenceGuide({
       return features.map((feature) => ({
         ...feature,
         explanation: getClericSubclassFeatureVossNarration(selectedSubclass.id, feature.sourceKey) || feature.explanation,
+      }))
+    }
+    if (selectedClass?.id === "wizard") {
+      return features.map((feature) => ({
+        ...feature,
+        explanation: getWizardSubclassFeatureVossNarration(selectedSubclass.id, feature.sourceKey) || feature.explanation,
       }))
     }
     return features
@@ -448,6 +475,7 @@ export default function ReferenceGuide({
   const isDruid = selectedClass?.id === "druid"
   const isFighter = selectedClass?.id === "fighter"
   const isCleric = selectedClass?.id === "cleric"
+  const isWizard = selectedClass?.id === "wizard"
   const classSummary = isDruid ? druidReference.mechanicalSummary : classTemplate?.mechanical_summary?.trim() || selectedClass?.tagline || ""
   const classExplanation = isDruid
     ? druidClassVossNarration
@@ -455,9 +483,12 @@ export default function ReferenceGuide({
       ? fighterClassVossNarration
       : isCleric
         ? clericClassVossNarration
-        : classTemplate?.author_description?.trim() || ""
+        : isWizard
+          ? wizardClassVossNarration
+          : classTemplate?.author_description?.trim() || ""
   const classDescription = classTemplate?.description?.trim() || selectedClass?.description || classSummary
   const classComment = isDruid ? druidReference.authorComment : classTemplate?.author_comment?.trim() || ""
+
   const subclassExplanation = selectedSubclass
     ? isDruid
       ? getDruidSubclassVossNarration(selectedSubclass.id) || selectedSubclassTemplate?.author_description?.trim() || selectedSubclass?.explanation || ""
@@ -465,7 +496,9 @@ export default function ReferenceGuide({
         ? getFighterSubclassVossNarration(selectedSubclass.id) || selectedSubclassTemplate?.author_description?.trim() || selectedSubclass?.explanation || ""
         : isCleric
           ? getClericSubclassVossNarration(selectedSubclass.id) || selectedSubclassTemplate?.author_description?.trim() || selectedSubclass?.explanation || ""
-          : selectedSubclassTemplate?.author_description?.trim() || selectedSubclass?.explanation || ""
+          : isWizard
+            ? getWizardSubclassVossNarration(selectedSubclass.id) || selectedSubclassTemplate?.author_description?.trim() || selectedSubclass?.explanation || ""
+            : selectedSubclassTemplate?.author_description?.trim() || selectedSubclass?.explanation || ""
     : ""
   const subclassDescription = selectedSubclassTemplate?.description?.trim() || selectedSubclass?.summary || ""
   const subclassSummary = selectedSubclassTemplate?.mechanical_summary?.trim() || selectedSubclass?.summary || ""

@@ -127,6 +127,7 @@ function input(): CharacterEngineInput {
 test("class presentation keeps class/subclass mechanics separate and excludes item spells", () => {
   const contract = resolveCharacterContract(input())
   const presented = presentClassPackages(contract, [{
+    classAssignmentId: "test-assign-1",
     classTemplateId: "druid-template",
     className: "Друид",
     level: 5,
@@ -154,6 +155,7 @@ test("class presentation keeps class/subclass mechanics separate and excludes it
 test("Class tab read model exposes stable machine types from CE rather than display labels", () => {
   const contract = resolveCharacterContract(input())
   const presented = presentClassPackages(contract, [{
+    classAssignmentId: "test-assign-2",
     classTemplateId: "druid-template",
     className: "Друид",
     level: 5,

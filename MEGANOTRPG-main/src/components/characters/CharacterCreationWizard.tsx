@@ -138,7 +138,7 @@ export default function CharacterCreationWizard({ target, campaignId, members, u
   const saveSet = useMemo(() => new Set(sheet.saving_throw_proficiencies || []), [sheet.saving_throw_proficiencies])
   const skillCount = useMemo(() => Object.values(sheet.skill_proficiencies || {}).filter((rank) => Number(rank) > 0).length, [sheet.skill_proficiencies])
   const expertCount = useMemo(() => Object.values(sheet.skill_proficiencies || {}).filter((rank) => Number(rank) >= 2).length, [sheet.skill_proficiencies])
-  const slotSummary = useMemo(() => Object.entries(sheet.spell_slots || {}).filter(([, slot]) => Number(slot?.max || 0) > 0).map(([key, slot]) => `${key} ур. ×${slot.max}`).join(" · "), [sheet.spell_slots])
+  const slotSummary = useMemo(() => Object.entries(sheet.spell_slots || {}).filter(([, slot]) => Number((slot as any)?.max || 0) > 0).map(([key, slot]) => `${key} ур. ×${(slot as any).max}`).join(" · "), [sheet.spell_slots])
 
   function mark(...keys: Array<keyof CharacterWizardSheet>) {
     setDirty((current) => {
@@ -214,7 +214,7 @@ export default function CharacterCreationWizard({ target, campaignId, members, u
     const next = new Set(saveSet)
     if (next.has(key)) next.delete(key)
     else next.add(key)
-    updateField("saving_throw_proficiencies", [...next])
+    updateField("saving_throw_proficiencies", [...next] as string[])
   }
 
   function cycleSkill(key: WizardSkillKey) {

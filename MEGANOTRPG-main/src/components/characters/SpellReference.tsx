@@ -156,12 +156,12 @@ export default function SpellReference({
   )
 
   const schools = useMemo(
-    () => Array.from(new Set(spells.map((spell) => spell.school).filter(Boolean)))
+    () => Array.from(new Set<string>(spells.map((spell) => spell.school as string).filter(Boolean) as string[]))
       .sort((a, b) => schoolLabel(a).localeCompare(schoolLabel(b), "ru")),
     [spells],
   )
   const sources = useMemo(
-    () => Array.from(new Set(spells.map((spell) => spell.source).filter(Boolean))).sort((a, b) => a.localeCompare(b, "ru")),
+    () => Array.from(new Set<string>(spells.map((spell) => spell.source as string).filter(Boolean) as string[])).sort((a, b) => a.localeCompare(b, "ru")),
     [spells],
   )
 

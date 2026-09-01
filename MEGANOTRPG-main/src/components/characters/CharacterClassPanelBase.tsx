@@ -504,7 +504,7 @@ export default function CharacterClassPanel({ characterId, contract, onOpenRefer
     setRuntimeError("")
     const result = await runResolvedTemplateResourceAction(characterId, contract, action, optionKey)
     setBusyId("")
-    if (!result.ok) setRuntimeError(result.error)
+    if (!result.ok) setRuntimeError((result as any).error || "Error")
   }
 
   async function spendSpell(entry: PresentedClassSpell, option: ResolvedSpellResourceOption) {
@@ -513,7 +513,7 @@ export default function CharacterClassPanel({ characterId, contract, onOpenRefer
     setRuntimeError("")
     const result = await spendResolvedClassSpellOption(characterId, contract, option)
     setBusyId("")
-    if (!result.ok) setRuntimeError(result.error)
+    if (!result.ok) setRuntimeError((result as any).error || "Error")
   }
 
   async function setSourceSuppressed(target: MechanicMenuTarget, suppressed: boolean) {

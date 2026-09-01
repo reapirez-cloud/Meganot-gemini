@@ -95,7 +95,7 @@ export default function WizardArcaneRecoveryPanel({ characterId, assignmentId, w
     const result = await runWizardArcaneRecovery(characterId, assignmentId, contract, selection)
     setBusy(false)
     if (!result.ok) {
-      setError(result.error)
+      setError((result as any).error || "Error")
       return
     }
     setSelection({})

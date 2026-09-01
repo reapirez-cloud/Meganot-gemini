@@ -25,6 +25,7 @@ function missingSheetSource(): CharacterRuntimeDataSource {
         features: [],
         preparationSession: null,
         preparationRecords: [],
+        wizardSpellbookCatalogIds: [],
       }
     },
     async loadCatalog() {
